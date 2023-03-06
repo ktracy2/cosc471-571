@@ -1,5 +1,14 @@
 
 <!-- Figure 2: Search Screen by Alexander -->
+<?php
+include_once 'includes/dbh.inc.php';
+// Check connection
+if ($conn->connect_error) {
+echo "MySQL connection failed.";
+} else {
+echo "MySQL connection success!";
+}
+?>
 <html>
 <head>
 	<title>SEARCH - 3-B.com</title>

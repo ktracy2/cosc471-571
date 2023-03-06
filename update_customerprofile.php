@@ -1,3 +1,12 @@
+<?php
+include_once 'includes/dbh.inc.php';
+// Check connection
+if ($conn->connect_error) {
+echo "MySQL connection failed.";
+} else {
+echo "MySQL connection success!";
+}
+?>
 <script>alert('Please enter all values')</script><!DOCTYPE HTML>
 <head>
 <title>UPDATE CUSTOMER PROFILE</title>

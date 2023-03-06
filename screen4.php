@@ -1,5 +1,18 @@
 
 <!-- screen 4: Book Reviews by Prithviraj Narahari, php coding: Alexander Martens-->
+<!--
+Edited by Katie Tracy
+Added database connectivity.
+-->
+<?php
+include_once 'includes/dbh.inc.php';
+// Check connection
+if ($conn->connect_error) {
+echo "MySQL connection failed.";
+} else {
+echo "MySQL connection success!";
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
