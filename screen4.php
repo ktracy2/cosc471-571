@@ -16,7 +16,7 @@ echo "MySQL connection success!";
 <!DOCTYPE html>
 <html>
 <head>
-<title>Book Reviews - 3-B.com</title>
+<title>Book Reviews mod by Lu - 3-B.com</title>
 <style>
 .field_set
 {
