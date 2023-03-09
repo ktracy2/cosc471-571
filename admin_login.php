@@ -1,4 +1,3 @@
-
 <?php
 include_once 'includes/dbh.inc.php';
 // Check connection
@@ -47,3 +46,13 @@ echo "MySQL connection success!";
 
 
 </html>
+
+<?php
+include_once 'includes/dbh.inc.php';
+// Check connection
+if ($conn->connect_error) {
+echo "MySQL connection failed.";
+} else {
+echo "MySQL connection success!";
+}
+?>

@@ -1,12 +1,15 @@
 <!-- Figure 1: Welcome Screen by Alexander -->
 <?php
-	include_once 'includes/dbh.inc.php';
-	// Check connection
-	if ($conn->connect_error) {
-	echo "MySQL connection failed.";
-	} else {
-	echo "MySQL connection success!";
-	}
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
+include_once 'includes/dbh.inc.php';
+// Check connection
+if ($conn->connect_error) {
+echo "MySQL connection failed.";
+} else {
+echo "MySQL connection success!";
+}
 ?>
 <title>Welcome to Best Book Buy Online Bookstore!</title>
 
@@ -23,4 +26,5 @@
 	</form></td></tr>
 	</table>
 </body>
-</html
+
+</html>
