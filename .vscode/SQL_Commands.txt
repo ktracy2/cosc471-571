@@ -1,0 +1,1 @@
+This is a text file that will contain all of the DDL for our database.
