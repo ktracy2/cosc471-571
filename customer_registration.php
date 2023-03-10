@@ -1,11 +1,51 @@
 <?php
 include_once 'includes/dbh.inc.php';
 // Check connection
-if ($conn->connect_error) {
-echo "MySQL connection failed.";
-} else {
-echo "MySQL connection success!";
-}
+	if ($conn->connect_error) {
+	//echo "MySQL connection failed.";
+	} else {
+	//echo "MySQL connection success!";
+	}
+
+	if (!empty($_POST)){
+		//Set connection to a variable
+		$db = mysqli_connect("localhost", "admin", "password", "3bdb");
+
+		//Get variables from user input
+		$username = $_POST["username"];
+		$pin = (int)$_POST["pin"];
+		$retype_pin = (int)$_POST["retype_pin"];
+		$firstname = $_POST["firstname"];
+		$lastname = $_POST["lastname"];
+		$address = $_POST["address"];
+		$city = $_POST["city"];
+		$state = $_POST["state"];
+		$zip = (int)$_POST["zip"];
+		$cctype = $_POST["credit_card"];
+		$ccnum = $_POST["card_number"];
+		$expdate = $_POST["expiration"];
+
+		//check if username exists in db
+		$query = "SELECT * FROM customer where username = '$username';";
+		$result = mysqli_query($db, $query);
+		$num_rows = mysqli_num_rows($result);
+		if ($num_rows > 0) {
+			echo 'User already exists.  Choose a new username.';
+		}
+		else {
+			if ($pin == $retype_pin){
+				$query = "INSERT INTO customer(username, pin, fname, lname, address, city, zip, state, cctype ,ccnum, expdate) VALUES ('$username', $pin, '$firstname', '$lastname', '$address', '$city', $zip, '$state', '$cctype', '$ccnum', '$expdate');";
+        		mysqli_query($db, $query);
+			}
+		}
+	
+	}
+	//came from index.php or redirected from a checkout 
+
+	//is username exists in db, alert that username exists
+	
+	//if username does not exist, build the sql statement to save the information and forcibly redirect to the search page
+	//TO DOredirect to checkout page (see if shopping cart is populated) 
 ?>
 <script>alert('Please enter all values')</script><!-- UI: Prithviraj Narahari, php code: Alexander Martens -->
 <head>
@@ -123,5 +163,6 @@ echo "MySQL connection success!";
 			</form>
 		</tr>
 	</table>
+
 </body>
 </HTML>

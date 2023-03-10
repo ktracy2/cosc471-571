@@ -2,19 +2,19 @@ This is a text file that will contain all of the DDL for our database.
 // CREATE CUSTOMER TABLE AND ADD DUMMY VALUES
 CREATE TABLE customer (
     username varchar(10),
-    pin int(4),
+    pin int,
     fname varchar(20),
     lname varchar(20),
     address varchar(20),
     city varchar(20),
-    zip int(5),
+    zip int,
     state varchar(20),
     cctype varchar(10),
-    ccnum bigint(16),
-    expdate date,
-    PRIMARY KEY (username, pin)
+    ccnum char(16),
+    expdate varchar(10),
+    PRIMARY KEY (username)
 );
-INSERT INTO customer VALUES ("ktracy", 1234, "Katie", "Tracy", "34 Barrington.", "Ypsilanti", 48198, "Michigan", "MASTER", 1234567890123456, "2023-04-27");
-INSERT INTO customer VALUES ("awickman", 7890, "Alyssa", "Wickman", "123 Woodmont", "Canton", 48188, "Michigan", "VISA", 1234567890123456, "2027-05-05");
-INSERT INTO customer VALUES ("dhe", 4567, "Dianlu", "He", "123 Arbor", "Ann Arbor", 48109, "Michigan", "MASTER", 1234567899345622, "2023-12-03");
-INSERT INTO customer VALUES ("rkalvaitis", 1235, "Rick", "Kalvaitis", "555 Cali", "Sacramento", 94203, "California", "DISCOVER", 1234444890123456, "2025-05-30");
+INSERT INTO customer VALUES ("ktracy", 1234, "Katie", "Tracy", "34 Barrington.", "Ypsilanti", 48198, "Michigan", "MASTER", "1234567890123456", "2023-04-27");
+INSERT INTO customer VALUES ("awickman", 7890, "Alyssa", "Wickman", "123 Woodmont", "Canton", 48188, "Michigan", "VISA", "1234567890123456", "2027-05-05");
+INSERT INTO customer VALUES ("dhe", 4567, "Dianlu", "He", "123 Arbor", "Ann Arbor", 48109, "Michigan", "MASTER", "1234567899345622", "2023-12-03");
+INSERT INTO customer VALUES ("rkalvaitis", 1235, "Rick", "Kalvaitis", "555 Cali", "Sacramento", 94203, "California", "DISCOVER", "1234444890123456", "2025-05-30");
