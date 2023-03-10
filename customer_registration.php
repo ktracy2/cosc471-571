@@ -1,3 +1,4 @@
+<!-- Edited by Katie Tracy -->
 <?php
 include_once 'includes/dbh.inc.php';
 // Check connection
@@ -78,7 +79,7 @@ include_once 'includes/dbh.inc.php';
 		</tr>
 		<tr>
 			<td align="right">
-				Firstname<span style="color:red">*</span>:
+				First Name<span style="color:red">*</span>:
 			</td>
 			<td colspan="3" align="left">
 				<input type="text" id="firstname" name="firstname" placeholder="Enter your firstname">
@@ -86,7 +87,7 @@ include_once 'includes/dbh.inc.php';
 		</tr>
 		<tr>
 			<td align="right">
-				Lastname<span style="color:red">*</span>:
+				Last Name<span style="color:red">*</span>:
 			</td>
 			<td colspan="3" align="left">
 				<input type="text" id="lastname" name="lastname" placeholder="Enter your lastname">

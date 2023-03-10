@@ -14,7 +14,19 @@ CREATE TABLE customer (
     expdate varchar(10),
     PRIMARY KEY (username)
 );
-INSERT INTO customer VALUES ("ktracy", 1234, "Katie", "Tracy", "34 Barrington.", "Ypsilanti", 48198, "Michigan", "MASTER", "1234567890123456", "2023-04-27");
-INSERT INTO customer VALUES ("awickman", 7890, "Alyssa", "Wickman", "123 Woodmont", "Canton", 48188, "Michigan", "VISA", "1234567890123456", "2027-05-05");
-INSERT INTO customer VALUES ("dhe", 4567, "Dianlu", "He", "123 Arbor", "Ann Arbor", 48109, "Michigan", "MASTER", "1234567899345622", "2023-12-03");
-INSERT INTO customer VALUES ("rkalvaitis", 1235, "Rick", "Kalvaitis", "555 Cali", "Sacramento", 94203, "California", "DISCOVER", "1234444890123456", "2025-05-30");
+
+CREATE TABLE book (
+    isbn varchar(20),
+    title varchar(50),
+    author varchar(50),
+    publisher varchar(50),
+    category varchar(20),
+    price decimal(5,2),
+    quantity int,
+    PRIMARY KEY (isbn)
+);
+
+INSERT INTO book VALUES ('9780743273565','The Great Gatsby','F. Scott Fitzgerald', 'Scribner', 'Fiction', 8.99, 3);
+INSERT INTO book VALUES ('1840227796', 'The Secret Garden', 'Frances Hodgson Burnett', 'Wordsworth Editions', 'Fiction', 12.99, 2);
+INSERT INTO book VALUES ('0441013597', 'Dune', 'Frank Herbert', 'Penguin', 'Science Fiction', 15.69, 5);
+INSERT INTO book VALUES ('0147514010', 'Little Women','Louisa May Alcott', 'Puffin Books', 'Romance', 7.88, 2);
