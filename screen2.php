@@ -3,17 +3,19 @@
 <?php
 include_once 'includes/dbh.inc.php';
 // Check connection
-if ($conn->connect_error) {
+/* if ($conn->connect_error) {
 echo "MySQL connection failed.";
 } else {
 echo "MySQL connection success!";
-}
+} */
 ?>
 <html>
 <head>
 	<title>SEARCH - 3-B.com</title>
+	<link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<h1 align="center">BBB Book Search</h1>
 	<table align="center" style="border:1px solid blue;">
 		<tr>
 			<td>Search for: </td>

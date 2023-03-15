@@ -2,11 +2,11 @@
 <?php
 include_once 'includes/dbh.inc.php';
 // Check connection
-	if ($conn->connect_error) {
+/* 	if ($conn->connect_error) {
 	//echo "MySQL connection failed.";
 	} else {
 	//echo "MySQL connection success!";
-	}
+	} */
 
 	if (!empty($_POST)){
 		//Set connection to a variable
@@ -50,9 +50,11 @@ include_once 'includes/dbh.inc.php';
 ?>
 <script>alert('Please enter all values')</script><!-- UI: Prithviraj Narahari, php code: Alexander Martens -->
 <head>
+<link rel="stylesheet" href="styles.css">
 <title> CUSTOMER REGISTRATION </title>
 </head>
 <body>
+<h1 align="center">CUSTOMER REGISTRATION</h1>
 	<table align="center" style="border:2px solid blue;">
 		<tr>
 			<form id="register" action="" method="post">

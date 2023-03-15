@@ -21,7 +21,7 @@ Added database connectivity.
 include_once 'includes/dbh.inc.php';
 
 // Check connection
-
+/* 
 if ($conn->connect_error) {
 
     echo "MySQL connection failed.";
@@ -30,7 +30,7 @@ if ($conn->connect_error) {
 
     echo "MySQL connection success!";
 
-}
+} */
 
 
 
@@ -73,7 +73,7 @@ $reviews_str = implode("<br>", $reviews);
 <head>
 
     <title>Book Reviews - 3-B.com</title>
-
+    <link rel="stylesheet" href="styles.css">
     <style>
 
         .field_set

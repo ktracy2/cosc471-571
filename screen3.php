@@ -3,15 +3,16 @@
 <?php
 include_once 'includes/dbh.inc.php';
 // Check connection
-if ($conn->connect_error) {
+/* if ($conn->connect_error) {
 echo "MySQL connection failed.";
 } else {
 echo "MySQL connection success!";
-}
+} */
 ?>
 <html>
 <head>
 	<title> Search Result - 3-B.com </title>
+	<link rel="stylesheet" href="styles.css">
 	<script>
 	//redirect to reviews page
 	function review(isbn, title){
@@ -24,6 +25,7 @@ echo "MySQL connection success!";
 	</script>
 </head>
 <body>
+<h1 align="center">BBB Book Search Results</h1>
 	<table align="center" style="border:1px solid blue;">
 		<tr>
 			<td align="left">
