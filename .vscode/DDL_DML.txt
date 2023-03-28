@@ -30,3 +30,19 @@ INSERT INTO book VALUES ('9780743273565','The Great Gatsby','F. Scott Fitzgerald
 INSERT INTO book VALUES ('1840227796', 'The Secret Garden', 'Frances Hodgson Burnett', 'Wordsworth Editions', 'Fiction', 12.99, 2);
 INSERT INTO book VALUES ('0441013597', 'Dune', 'Frank Herbert', 'Penguin', 'Science Fiction', 15.69, 5);
 INSERT INTO book VALUES ('0147514010', 'Little Women','Louisa May Alcott', 'Puffin Books', 'Romance', 7.88, 2);
+
+
+////$  xcode is not updating this part -- lu
+//creat reviews table and add dummy VALUES
+    create table reviews 
+    (ISBN  varchar(8), 
+    review  varchar(250), 
+    author  varchar(20), 
+    bookTitle  varchar(250), 
+    primary key (ISBN, review));
+
+
+    insert into reviews values('0003', 'I like this book.', 'Brian Knight', "SQL Server 2000 for Experienced DBA's");
+    insert into reviews values('0003', 'A good book, but too expensive!', 'Brian Knight', "SQL Server 2000 for Experienced DBA's");
+    insert into reviews values('0003', 'The author likes to write in long paragraphs', 'Brian Knight', "SQL Server 2000 for Experienced DBA's");
+
