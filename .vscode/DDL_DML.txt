@@ -1,5 +1,6 @@
-This is a text file that will contain all of the DDL for our database.
-// CREATE CUSTOMER TABLE AND ADD DUMMY VALUES
+// This is a text file that will contain all of the DDL for our database.
+
+// customer table DDL
 CREATE TABLE customer (
     username varchar(10),
     pin int,
@@ -15,6 +16,7 @@ CREATE TABLE customer (
     PRIMARY KEY (username)
 );
 
+// book table DDL
 CREATE TABLE book (
     isbn varchar(20),
     title varchar(50),
@@ -26,7 +28,11 @@ CREATE TABLE book (
     PRIMARY KEY (isbn)
 );
 
+// book table DML
 INSERT INTO book VALUES ('9780743273565','The Great Gatsby','F. Scott Fitzgerald', 'Scribner', 'Fiction', 8.99, 3);
 INSERT INTO book VALUES ('1840227796', 'The Secret Garden', 'Frances Hodgson Burnett', 'Wordsworth Editions', 'Fiction', 12.99, 2);
-INSERT INTO book VALUES ('0441013597', 'Dune', 'Frank Herbert', 'Penguin', 'Science Fiction', 15.69, 5);
-INSERT INTO book VALUES ('0147514010', 'Little Women','Louisa May Alcott', 'Puffin Books', 'Romance', 7.88, 2);
+INSERT INTO book VALUES ('1505297400', 'Treasure Island','Robert Louis Stevenson', 'CreateSpace', 'Adventure', 10.19, 2);
+INSERT INTO book VALUES ('0385486804', 'Into the Wild','Jon Krakauer', 'Anchor', 'Adventure', 25.62, 4);
+
+
+//reviews table DDL

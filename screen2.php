@@ -8,6 +8,10 @@ echo "MySQL connection failed.";
 } else {
 echo "MySQL connection success!";
 } */
+	//Start session
+	session_start();
+	$_SESSION["user"] = "default";
+	
 ?>
 <html>
 <head>
@@ -40,12 +44,21 @@ echo "MySQL connection success!";
 			<td>Category: </td>
 				<td><select name="category">
 						<option value='all' selected='selected'>All Categories</option>
-						<option value='1'>Fantasy</option><option value='2'>Adventure</option><option value='3'>Fiction</option><option value='4'>Horror</option>				</select></td>
+						<option value='1'>Fantasy</option><option value='2'>Adventure</option><option value='3'>Fiction</option><option value='4'>Horror</option></select></td>
 				</form>
 	<form action="index.php" method="post">	
 				<td><input type="submit" name="exit" value="EXIT 3-B.com" /></td>
 			</form>
 		</tr>
 	</table>
+	<?php
+		if(isset($_POST['search'])){
+			// As output of $_POST['searchon'] is an array we have to use foreach Loop to display individual value
+			foreach ($_POST['searchon'] as $select)
+			{
+			print "You have selected :" .$select; // Displaying Selected Value
+			}
+		}
+	?>
 </body>
 </html>

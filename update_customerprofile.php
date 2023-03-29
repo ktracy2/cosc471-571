@@ -10,7 +10,7 @@ echo "MySQL connection success!";
 <script>alert('Please enter all values')</script><!DOCTYPE HTML>
 <head>
 <title>UPDATE CUSTOMER PROFILE</title>
-
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 	<form id="update_profile" action="" method="post">

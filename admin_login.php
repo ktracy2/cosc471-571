@@ -1,23 +1,25 @@
 <?php
 include_once 'includes/dbh.inc.php';
 // Check connection
-if ($conn->connect_error) {
+/* if ($conn->connect_error) {
 echo "MySQL connection failed.";
 } else {
 echo "MySQL connection success!";
-}
+} */
 ?>
 <!DOCTYPE HTML>
 <head>
 <title>Admin Login</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+<h1 align="center">Administrator Login</h1>
 <table align="center" style="border:2px solid blue;">
 		<form action="admin_tasks.php" method="post" id="adminlogin_screen">
 		<tr>
 			<td align="right">
-				Adminname<span style="color:red">*</span>:
+				Admin Name<span style="color:red">*</span>:
 			</td>
 			<td align="left">
 				<input type="text" name="adminname" id="adminname">
@@ -47,12 +49,4 @@ echo "MySQL connection success!";
 
 </html>
 
-<?php
-include_once 'includes/dbh.inc.php';
-// Check connection
-if ($conn->connect_error) {
-echo "MySQL connection failed.";
-} else {
-echo "MySQL connection success!";
-}
-?>
+

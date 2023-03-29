@@ -1,17 +1,19 @@
 <?php
 include_once 'includes/dbh.inc.php';
 // Check connection
-if ($conn->connect_error) {
+/* if ($conn->connect_error) {
 echo "MySQL connection failed.";
 } else {
 echo "MySQL connection success!";
-}
+} */
 ?>
 <!DOCTYPE HTML>
 <head>
 <title>User Login</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<h1 align="center">User Login</h1>
 	<table align="center" style="border:2px solid blue;">
 		<form action="screen2.php" method="post" id="login_screen">
 		<tr>

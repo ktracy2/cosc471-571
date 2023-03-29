@@ -1,15 +1,16 @@
 <?php
 include_once 'includes/dbh.inc.php';
 // Check connection
-if ($conn->connect_error) {
+/* if ($conn->connect_error) {
 echo "MySQL connection failed.";
 } else {
 echo "MySQL connection success!";
-}
+} */
 ?>
 <!DOCTYPE HTML>
 <head>
 	<title>CONFIRM ORDER</title>
+	<link rel="stylesheet" href="styles.css">
 	<header align="center">Confirm Order</header> 
 </head>
 <body>
