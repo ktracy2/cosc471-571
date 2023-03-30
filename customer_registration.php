@@ -161,11 +161,17 @@ include_once 'includes/dbh.inc.php';
 			</form>
 			<form id="no_registration" action="index.php" method="post">
 			<td colspan="2" align="center">
-				<input type="submit" id="donotregister" name="donotregister" value="Don't Register">
+				<input type="submit" id="donotregister" name="donotregister" onClick = "alertToRegister()" value="Don't Register">
 			</td>
 			</form>
 		</tr>
 	</table>
+	<!-- FIGURE 7 Alert Added by Katie -->
+	<script>
+		function alertToRegister(){
+   			alert("In order to proceed with the payment, you need to register first.");
+		}​;
+	​</script>
 
 </body>
 </HTML>

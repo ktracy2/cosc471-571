@@ -84,13 +84,13 @@ echo "MySQL connection success!";
 
 						<option value='all' selected='selected'>All Categories</option>
 
-						<option value='1'>Fantasy</option>
+						<option value='Fantasy'>Fantasy</option>
 
-                        <option value='2'>Adventure</option>
+                        <option value='Adventure'>Adventure</option>
 
-                        <option value='3'>Fiction</option>
+                        <option value='Fiction'>Fiction</option>
 
-                        <option value='4'>Horror</option>				
+                        <option value='Horror'>Horror</option>				
 
 					</select>
 

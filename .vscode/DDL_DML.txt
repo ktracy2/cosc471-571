@@ -53,7 +53,7 @@ INSERT INTO book VALUES ('0547928223', 'The Hobbit','JRR Tolkein', 'Houghton Mif
     insert into reviews values('0441013597', 'The author likes to write in long paragraphs', 'Frank Herbert', 'Dune');
     insert into reviews values('0486282112', 'Too scary!', 'Mary Shelley', 'Frankenstein');
     insert into reviews values('0547928223', 'So magical!', 'JRR Tolkein', 'The Hobbit');
-    INSERT INTO reviews VALUES ('9780743273565', 'I did not really like the ending. 2//10', 'F. Scott Fitzgerald', 'The Great Gatsby');
+    INSERT INTO reviews VALUES ('9780743273565', 'I did not really like the ending. 2/10', 'F. Scott Fitzgerald', 'The Great Gatsby');
     insert into reviews values('1840227796', 'I thought it was a good read :)', 'Frances Hodgson Burnett', 'The Secret Garden');
     insert into reviews values('0147514010', 'Such a good story.', 'Louisa May Alcott', 'Little Women');
     insert into reviews values('0441013597', 'Too confusing and too many characters.', 'Frank Herbert', 'Dune');
