@@ -1,6 +1,7 @@
 
 
 <!-- screen 4: Book Reviews by Dianlu He
+Last edited by Katie Tracy 3/30/2023 @ 2:35
 
 23 Winter COSC 571
 
@@ -17,7 +18,7 @@ Added database connectivity.
 
 
 <?php
-
+session_start();
 include_once 'includes/dbh.inc.php';
 
 // Check connection
@@ -34,15 +35,16 @@ if ($conn->connect_error) {
 */
 
 
-session_start();
+
 // Fetch reviews for the given book title
-$isbn = $_SESSION['search_results']['isbn'];
-$title = $_SESSION['search_results']['title'];
+$isbn = $_GET['isbn'];
+$title = $_GET['title'];
+
 //echo $title;
 //echo $_SESSION["authorOfBookForReivew"];
 //$authorName = $_SESSION["authorOfBookForReivew"];
 
-$sql = "SELECT review, author, bookTitle FROM reviews WHERE isbn = 'isbn';";
+$sql = "SELECT review, author, bookTitle FROM reviews WHERE bookTitle = '$title';";
 
 
 $result = mysqli_query($conn, $sql);
@@ -283,7 +285,7 @@ $reviews_str = implode("<br>", $reviews);
 
 		<td align="left" class="reviews-heading">
 
-                <h5>Reviews for <?php $title ?></h5>
+                <h5>Reviews for</h5>
 
 		</td>
 
@@ -293,7 +295,7 @@ $reviews_str = implode("<br>", $reviews);
 
 			<div class="container">
 
-			<h1><?php "<p>".$title."</p>"?> </br> <span style="font-weight: bold;">By</span> <?php echo "<p>".$authorName."</p>" ?></h1>
+			<h1><?php echo $bookTitle ?> </br> <span style="font-weight: bold;">By</span> <?php echo $authorName  ?></h1>
 
 			</div>
 
