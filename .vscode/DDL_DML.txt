@@ -24,28 +24,32 @@ CREATE TABLE book (
     publisher varchar(50),
     category varchar(20),
     price decimal(5,2),
-    quantity int,
     PRIMARY KEY (isbn)
 );
 
 // book table DML
-INSERT INTO book VALUES ('9780743273565','The Great Gatsby','F. Scott Fitzgerald', 'Scribner', 'Fiction', 8.99, 3);
-INSERT INTO book VALUES ('1840227796', 'The Secret Garden', 'Frances Hodgson Burnett', 'Wordsworth Editions', 'Fiction', 12.99, 2);
-INSERT INTO book VALUES ('0441013597', 'Dune', 'Frank Herbert', 'Penguin', 'Science Fiction', 15.69, 5);
-INSERT INTO book VALUES ('0147514010', 'Little Women','Louisa May Alcott', 'Puffin Books', 'Romance', 7.88, 2);
+INSERT INTO book VALUES ('9780743273565','The Great Gatsby','F. Scott Fitzgerald', 'Scribner', 'Fiction', 8.99);
+INSERT INTO book VALUES ('1840227796', 'The Secret Garden', 'Frances Hodgson Burnett', 'Wordsworth Editions', 'Fiction', 12.99);
+INSERT INTO book VALUES ('0441013597', 'Dune', 'Frank Herbert', 'Penguin', 'Adventure', 15.69);
+INSERT INTO book VALUES ('0147514010', 'Little Women','Louisa May Alcott', 'Puffin Books', 'Fiction', 7.88);
+INSERT INTO book VALUES ('0486282112', 'Frankenstein','Mary Shelley', 'Dover Publications', 'Horror', 5.99);
+INSERT INTO book VALUES ('0547928223', 'The Hobbit','JRR Tolkein', 'Houghton Mifflin Harcourt', 'Fantasy', 11.19);
+
+
 
 
 ////$  xcode is not updating this part -- lu
-//creat reviews table and add dummy VALUES
+//create reviews table and add dummy VALUES
     create table reviews 
-    (ISBN  varchar(8), 
+    (isbn  varchar(20), 
     review  varchar(250), 
-    author  varchar(20), 
-    bookTitle  varchar(250), 
+    author  varchar(50), 
+    bookTitle  varchar(50), 
     primary key (ISBN, review));
 
-
-    insert into reviews values('0003', 'I like this book.', 'Brian Knight', "SQL Server 2000 for Experienced DBA's");
-    insert into reviews values('0003', 'A good book, but too expensive!', 'Brian Knight', "SQL Server 2000 for Experienced DBA's");
-    insert into reviews values('0003', 'The author likes to write in long paragraphs', 'Brian Knight', "SQL Server 2000 for Experienced DBA's");
-
+    INSERT INTO reviews VALUES ('9780743273565', 'I enjoyed reading this book.', 'F. Scott Fitzgerald', 'The Great Gatsby');
+    insert into reviews values('1840227796', 'I would recommend this book to anybody!', 'Frances Hodgson Burnett', 'The Secret Garden');
+    insert into reviews values('0147514010', 'A good book, but too expensive!', 'Louisa May Alcott', 'Little Women');
+    insert into reviews values('0441013597', 'The author likes to write in long paragraphs', 'Frank Herbert', 'Dune');
+    insert into reviews values('0486282112', 'Too scary!', 'Mary Shelley', 'Frankenstein');
+    insert into reviews values('0547928223', 'So magical!', 'JRR Tolkein', 'The Hobbit');

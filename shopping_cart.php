@@ -1,15 +1,25 @@
 <?php
 include_once 'includes/dbh.inc.php';
 // Check connection
-if ($conn->connect_error) {
+/* if ($conn->connect_error) {
 echo "MySQL connection failed.";
 } else {
 echo "MySQL connection success!";
-}
+} */
+	// Start a session 
+	session_start();
+	//$_SESSION["user"] = "default";
+	$user = $_SESSION["user"];
+	echo $user;
+	//until user logs in/creates an account, cart_id is for the default temporary user
+	$_SESSION["cart_id"] = "temp_user";
+	$_SESSION["cart_contents"] = $temp_cart;
+	
 ?>
 <!DOCTYPE HTML>
 <head>
 	<title>Shopping Cart</title>
+	<link rel="stylesheet" href="styles.css">
 	<script>
 	//remove from cart
 	function del(isbn){
@@ -18,7 +28,14 @@ echo "MySQL connection success!";
 	</script>
 </head>
 <body>
+	<h1 align = "center">Shopping Cart</h1>
 	<table align="center" style="border:2px solid blue;">
+
+		<!-- Show user name on cart, if user is not logged in, username is "default" -->
+		<?php
+		print "<tr><td>User: $user</td><td></td><td></td></tr>";
+		?>
+
 		<tr>
 			<td align="center">
 				<form id="checkout" action="confirm_order.php" method="get">
@@ -54,8 +71,7 @@ echo "MySQL connection success!";
 			<td align="center">
 				&nbsp;
 			</td>
-			<td align="center">			
-				Subtotal:  $12.99			</td>
+			<td align="center">Subtotal:  $12.99</td>
 		</tr>
 	</table>
 </body>

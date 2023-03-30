@@ -21,7 +21,7 @@ Added database connectivity.
 include_once 'includes/dbh.inc.php';
 
 // Check connection
-/* 
+/*
 if ($conn->connect_error) {
 
     echo "MySQL connection failed.";
@@ -30,16 +30,22 @@ if ($conn->connect_error) {
 
     echo "MySQL connection success!";
 
-} */
+} 
+*/
 
 
-
+session_start();
 // Fetch reviews for the given book title
+$isbn = $_SESSION['search_results']['isbn'];
+$title = $_SESSION['search_results']['title'];
+//echo $title;
+//echo $_SESSION["authorOfBookForReivew"];
+//$authorName = $_SESSION["authorOfBookForReivew"];
 
-$sql = "SELECT review, bookTitle, author FROM reviews WHERE bookTitle = 'SQL Server 2000 for Experienced DBA\'s'";
+$sql = "SELECT review, author, bookTitle FROM reviews WHERE isbn = 'isbn';";
 
-$result = $conn->query($sql);
 
+$result = mysqli_query($conn, $sql);
 $reviews = array();
 
 if ($result->num_rows > 0) {
@@ -63,8 +69,6 @@ if ($result->num_rows > 0) {
 $reviews_str = implode("<br>", $reviews);
 
 ?>
-
-
 
 <!DOCTYPE html>
 
@@ -271,7 +275,6 @@ $reviews_str = implode("<br>", $reviews);
 </head>
 
 
-
 <body>
 
 <table align="center" style="border:1px solid blue;">
@@ -280,7 +283,7 @@ $reviews_str = implode("<br>", $reviews);
 
 		<td align="left" class="reviews-heading">
 
-                <h5>Reviews for </h5>
+                <h5>Reviews for <?php $title ?></h5>
 
 		</td>
 
@@ -290,7 +293,7 @@ $reviews_str = implode("<br>", $reviews);
 
 			<div class="container">
 
-			<h1><?php echo $bookTitle; ?> </br> <span style="font-weight: bold;">By</span> <?php echo $authorName; ?></h1>
+			<h1><?php "<p>".$title."</p>"?> </br> <span style="font-weight: bold;">By</span> <?php echo "<p>".$authorName."</p>" ?></h1>
 
 			</div>
 
