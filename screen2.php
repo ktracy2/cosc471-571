@@ -82,7 +82,7 @@ echo "MySQL connection success!";
 
 					<select name="category">
 
-						<option value='all' selected='selected'>All Categories</option>
+						<option value='all'>All Categories</option>
 
 						<option value='Fantasy'>Fantasy</option>
 

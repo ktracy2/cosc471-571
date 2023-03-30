@@ -20,24 +20,67 @@ echo "MySQL connection success!";
 }
 */
 
+//default search - no selections made, list all books in db
+
+$search = $_GET['searchfor']; //what was in the search text box
+echo $search;
+$category = $_GET['category']; //what category was selected, or all
+echo $category;
+//Get values saved in searchon[]
+$refine = '';
+foreach ($_GET['searchon'] as $option){
+	//echo "you have selected " . $option; //Each option to refine search, or anywhere
+	$refine .= '"'. $option . '"'. ',';
+}
+$refine = substr($refine, 0, strlen($refine) - 1);
+echo $refine;
+//IF THERE IS NO CATEGORY SELECTED AND SEARCH ANYWHERE IS SELECTED, LIST ALL BOOKS IN DB
+if (count($_GET['searchon']) == 1 && $refine == "anywhere" && $search == null){
+	if ($category == 'all'){
+		$search = $_GET['searchfor'];
+		$sql = "SELECT * FROM book;";
+		//$sql = "SELECT * FROM book WHERE title LIKE '%$search%'";
+		$result = mysqli_query($conn, $sql);
+		$_SESSION['search_results'] = array();
+
+		if (mysqli_num_rows($result) > 0) {
+
+			while ($row = mysqli_fetch_assoc($result)) {
+
+				$_SESSION['search_results'][] = $row;
+				
+			}
+		}
+	}
+}
+//if Category is selected, build query that refines search including category
+if ($category != 'all') {
+		$sql = "SELECT * FROM book WHERE category = '$category';";
+		$result = mysqli_query($conn, $sql);
+		
+		$_SESSION['search_results'] = array();
+
+		if (mysqli_num_rows($result) > 0) {
+
+			while ($row = mysqli_fetch_assoc($result)) {
+
+				$_SESSION['search_results'][] = $row;
+				
+			}
+		}
+}
 
 // Get search term from GET request
 
 $search = $_GET['searchfor'];
 
-
-
 // Prepare SQL statement
 
 $sql = "SELECT * FROM book WHERE title LIKE '%$search%'";
 
-
-
 // Execute SQL statement
 
 $result = mysqli_query($conn, $sql);
-
-
 
 // Store search results in session variable
 
@@ -77,10 +120,6 @@ if (mysqli_num_rows($result) > 0) {
 mysqli_close($conn);
 
 ?>
-
-
-
-
 
 <!-- Figure 3: Search Result Screen by Prithviraj Narahari, php coding: Alexander Martens -->
 
@@ -163,7 +202,6 @@ mysqli_close($conn);
 			// Display search results
 
 			foreach ($_SESSION['search_results'] as $row) {
-				//These variables will be referenced in screen4.php to get the reviews for the book
 				
 				echo "<tr>";
 
