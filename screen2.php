@@ -17,12 +17,7 @@ echo "MySQL connection success!";
 }
 */
 
-/* unset($_GET['searchfor']); //what was in the search text box
-echo $_GET['searchfor'];
-unset($_GET['category']); //what category was selected, or all
-echo $_GET['category'];
-unset($_GET['searchon']);
-echo $_GET['searchon']; */
+
 
 
 ?>
@@ -36,7 +31,7 @@ echo $_GET['searchon']; */
 </head>
 
 <body>
-
+<h1 align = "center">Search</h1>
 	<table align="center" style="border:1px solid blue;">
 
 		<tr>
@@ -44,8 +39,6 @@ echo $_GET['searchon']; */
 			<td>Search for: </td>
 
 			<form action="screen3.php" method="get">
-
-<!-- ////				<td><input name="searchfor" /></td> -->
 
                 <td><input type="text" name="searchfor" /></td>
 

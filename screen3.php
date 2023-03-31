@@ -19,14 +19,15 @@ echo "MySQL connection success!";
 
 }
 */
-
-
+// Saves the state of the search results page to go back to after looking at review
 $queryString = $_SERVER['QUERY_STRING'];
 $_SESSION['queryString'] = $queryString;
+
+
 $search = $_GET['searchfor']; //what was in the search text box
-echo $search;
+//echo $search;
 $category = $_GET['category']; //what category was selected, or all
-echo $category;
+//echo $category;
 //Get values saved in searchon[]
 $refine = '';
 foreach ($_GET['searchon'] as $option){
@@ -34,12 +35,12 @@ foreach ($_GET['searchon'] as $option){
 	$refine .= '"'. $option . '"'. ',';
 }
 $refine = substr($refine, 0, strlen($refine) - 1);
-echo $refine;
+//echo $refine;
+///////////////////////////////////////////////////////////////////////////////////
 //IF THERE IS NO CATEGORY SELECTED AND SEARCH ANYWHERE IS SELECTED, LIST ALL BOOKS IN DB
-
 if ($refine == "\"anywhere\"" && $category == 'all'){
 		$search = $_GET['searchfor'];
-		echo $search;
+		//echo $search;
 		$sql = "SELECT * FROM book WHERE title LIKE '%$search%'";
 		$result = mysqli_query($conn, $sql);
 		$_SESSION['search_results'] = array();
@@ -54,7 +55,7 @@ if ($refine == "\"anywhere\"" && $category == 'all'){
 		}
 
 }
-
+//////////////////////////////////////////////////////////////////////////////////
 //if Category is selected, build query that refines search including category
 
 else if ($category != 'all') {
@@ -157,7 +158,7 @@ mysqli_close($conn);
 </head>
 
 <body>
-
+	<h1 align = "center">Search Results</h1>
 	<table align="center" style="border:1px solid blue;">
 
 		<tr>

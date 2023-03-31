@@ -1,5 +1,4 @@
 
-
 <!-- screen 4: Book Reviews by Dianlu He
 Last edited by Katie Tracy 3/30/2023 @ 2:35
 
@@ -15,19 +14,15 @@ Added database connectivity.
 
 -->
 
-
-
 <?php
 session_start();
 include_once 'includes/dbh.inc.php';
 
 $search = $_GET['searchfor']; //what was in the search text box
-//echo $search;
+
 $category = $_GET['category']; //what category was selected, or all
 
 
-
-//echo $category;
 //Get values saved in searchon[]
 $refine = '';
 $_GET['searchon'] = array();
