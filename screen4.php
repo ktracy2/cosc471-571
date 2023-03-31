@@ -21,6 +21,18 @@ Added database connectivity.
 session_start();
 include_once 'includes/dbh.inc.php';
 
+$search = $_GET['searchfor']; //what was in the search text box
+//echo $search;
+$category = $_GET['category']; //what category was selected, or all
+
+
+
+//echo $category;
+//Get values saved in searchon[]
+$refine = '';
+$_GET['searchon'] = array();
+
+
 // Check connection
 /*
 if ($conn->connect_error) {
@@ -333,7 +345,7 @@ $reviews_str = implode("<br>", $reviews);
 
         <td colspan="2" align="center">
 
-            <form action="screen2.php" method="post">
+            <form action="screen3.php<?php echo '?'.$_SESSION['queryString']?>" method="post">
 
                 <input type="submit" value="Done" style="font-family: Arial, sans-serif; font-size: 16px; padding: 10px 30px; background-color: #f2f2f2; color: #000; border: 1px solid; border-radius: 4px; cursor: pointer;">
 

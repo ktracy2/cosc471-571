@@ -20,8 +20,9 @@ echo "MySQL connection success!";
 }
 */
 
-//default search - no selections made, list all books in db
 
+$queryString = $_SERVER['QUERY_STRING'];
+$_SESSION['queryString'] = $queryString;
 $search = $_GET['searchfor']; //what was in the search text box
 echo $search;
 $category = $_GET['category']; //what category was selected, or all
@@ -35,11 +36,11 @@ foreach ($_GET['searchon'] as $option){
 $refine = substr($refine, 0, strlen($refine) - 1);
 echo $refine;
 //IF THERE IS NO CATEGORY SELECTED AND SEARCH ANYWHERE IS SELECTED, LIST ALL BOOKS IN DB
-if (count($_GET['searchon']) == 1 && $refine == "anywhere" && $search == null){
-	if ($category == 'all'){
+
+if ($refine == "\"anywhere\"" && $category == 'all'){
 		$search = $_GET['searchfor'];
-		$sql = "SELECT * FROM book;";
-		//$sql = "SELECT * FROM book WHERE title LIKE '%$search%'";
+		echo $search;
+		$sql = "SELECT * FROM book WHERE title LIKE '%$search%'";
 		$result = mysqli_query($conn, $sql);
 		$_SESSION['search_results'] = array();
 
@@ -51,10 +52,12 @@ if (count($_GET['searchon']) == 1 && $refine == "anywhere" && $search == null){
 				
 			}
 		}
-	}
+
 }
+
 //if Category is selected, build query that refines search including category
-if ($category != 'all') {
+
+else if ($category != 'all') {
 		$sql = "SELECT * FROM book WHERE category = '$category';";
 		$result = mysqli_query($conn, $sql);
 		
@@ -68,8 +71,10 @@ if ($category != 'all') {
 				
 			}
 		}
+
 }
 
+/*
 // Get search term from GET request
 
 $search = $_GET['searchfor'];
@@ -96,7 +101,7 @@ if (mysqli_num_rows($result) > 0) {
 	}
 
 }
-
+*/
 // // Add item to cart --- i think this part should be in shopping_cart
 
 // if (isset($_GET['cartisbn'])) {

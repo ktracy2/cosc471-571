@@ -17,7 +17,12 @@ echo "MySQL connection success!";
 }
 */
 
-
+/* unset($_GET['searchfor']); //what was in the search text box
+echo $_GET['searchfor'];
+unset($_GET['category']); //what category was selected, or all
+echo $_GET['category'];
+unset($_GET['searchon']);
+echo $_GET['searchon']; */
 
 
 ?>

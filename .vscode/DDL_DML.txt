@@ -1,6 +1,7 @@
 // This is a text file that will contain all of the DDL for our database.
 
-// customer table DDL
+// customer table DDL by Katie
+//customer table DDL
 CREATE TABLE customer (
     username varchar(10),
     pin int,
@@ -16,6 +17,7 @@ CREATE TABLE customer (
     PRIMARY KEY (username)
 );
 
+//book DDL and DML by Katie
 // book table DDL
 CREATE TABLE book (
     isbn varchar(20),
@@ -47,6 +49,7 @@ INSERT INTO book VALUES ('0547928223', 'The Hobbit','JRR Tolkein', 'Houghton Mif
     bookTitle  varchar(50), 
     primary key (ISBN, review));
 
+// reviews DML added by Katie
     INSERT INTO reviews VALUES ('9780743273565', 'I enjoyed reading this book.', 'F. Scott Fitzgerald', 'The Great Gatsby');
     insert into reviews values('1840227796', 'I would recommend this book to anybody!', 'Frances Hodgson Burnett', 'The Secret Garden');
     insert into reviews values('0147514010', 'A good book, but too expensive!', 'Louisa May Alcott', 'Little Women');
