@@ -25,9 +25,9 @@ $_SESSION['queryString'] = $queryString;
 
 
 $search = $_GET['searchfor']; //what was in the search text box
-echo $search;
+//echo $search;
 $category = $_GET['category']; //what category was selected, or all
-echo $category;
+//echo $category;
 //Get values saved in searchon[]
 $refine = '';
 foreach ($_GET['searchon'] as $option){
@@ -35,7 +35,7 @@ foreach ($_GET['searchon'] as $option){
 	$refine .= '"'. $option . '"'. ',';
 }
 $refine = substr($refine, 0, strlen($refine) - 1);
-echo $refine;
+
 //echo $refine;
 
 if(str_contains($refine, "\"title\"")){
@@ -132,34 +132,6 @@ else if ($category != 'all') {
 
 }
 
-/*
-// Get search term from GET request
-
-$search = $_GET['searchfor'];
-
-// Prepare SQL statement
-
-$sql = "SELECT * FROM book WHERE title LIKE '%$search%'";
-
-// Execute SQL statement
-
-$result = mysqli_query($conn, $sql);
-
-// Store search results in session variable
-
-$_SESSION['search_results'] = array();
-
-if (mysqli_num_rows($result) > 0) {
-
-	
-	while ($row = mysqli_fetch_assoc($result)) {
-
-		$_SESSION['search_results'][] = $row;
-		
-	}
-
-}
-*/
 // // Add item to cart --- i think this part should be in shopping_cart
 
 // if (isset($_GET['cartisbn'])) {
@@ -224,11 +196,11 @@ mysqli_close($conn);
 
 					<?php 
 					// Get a count of all items in shopping cart and set equal to below 
-					$_COOKIE['numItemsInCart'];
+					$numItems = 1;
 					
 					?>
 
-					<h6> <fieldset>Your Shopping Cart has 0 items</fieldset> </h6>
+					<h6> <fieldset>Your Shopping Cart has <?php echo $numItems?> items</fieldset> </h6>
 
 				
 
