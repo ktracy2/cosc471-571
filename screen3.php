@@ -7,6 +7,7 @@ session_start();
 
 include_once 'includes/dbh.inc.php';
 
+
 // Check connection
 /*
 if ($conn->connect_error) {
@@ -23,6 +24,8 @@ echo "MySQL connection success!";
 $queryString = $_SERVER['QUERY_STRING'];
 $_SESSION['queryString'] = $queryString;
 
+$cartisbn = $_GET['cartisbn'];
+$_SESSION['cartisbn'] = $cartisbn;
 
 $search = $_GET['searchfor']; //what was in the search text box
 //echo $search;

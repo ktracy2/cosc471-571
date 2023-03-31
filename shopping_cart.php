@@ -14,6 +14,8 @@ echo "MySQL connection success!";
 	//until user logs in/creates an account, cart_id is for the default temporary user
 	$_SESSION["cart_id"] = "temp_user";
 	$_SESSION["cart_contents"] = $temp_cart;
+	echo $_SESSION['cartisbn'];
+ 	
 	
 ?>
 <!DOCTYPE HTML>
