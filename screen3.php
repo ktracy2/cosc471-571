@@ -25,9 +25,9 @@ $_SESSION['queryString'] = $queryString;
 
 
 $search = $_GET['searchfor']; //what was in the search text box
-//echo $search;
+echo $search;
 $category = $_GET['category']; //what category was selected, or all
-//echo $category;
+echo $category;
 //Get values saved in searchon[]
 $refine = '';
 foreach ($_GET['searchon'] as $option){
@@ -35,7 +35,64 @@ foreach ($_GET['searchon'] as $option){
 	$refine .= '"'. $option . '"'. ',';
 }
 $refine = substr($refine, 0, strlen($refine) - 1);
+echo $refine;
 //echo $refine;
+
+if(str_contains($refine, "\"title\"")){
+	$sql = "SELECT * FROM book WHERE title LIKE '%$search%'";
+	$result = mysqli_query($conn, $sql);
+		$_SESSION['search_results'] = array();
+
+		if (mysqli_num_rows($result) > 0) {
+
+			while ($row = mysqli_fetch_assoc($result)) {
+
+				$_SESSION['search_results'][] = $row;
+				
+			}
+		}
+}
+if(str_contains($refine, "\"author\"")){
+	$sql = "SELECT * FROM book WHERE author LIKE '%$search%'";
+	$result = mysqli_query($conn, $sql);
+		$_SESSION['search_results'] = array();
+
+		if (mysqli_num_rows($result) > 0) {
+
+			while ($row = mysqli_fetch_assoc($result)) {
+
+				$_SESSION['search_results'][] = $row;
+				
+			}
+		}
+}if(str_contains($refine, "\"publisher\"")){
+	$sql = "SELECT * FROM book WHERE publisher LIKE '%$search%'";
+	$result = mysqli_query($conn, $sql);
+		$_SESSION['search_results'] = array();
+
+		if (mysqli_num_rows($result) > 0) {
+
+			while ($row = mysqli_fetch_assoc($result)) {
+
+				$_SESSION['search_results'][] = $row;
+				
+			}
+		}
+}
+if(str_contains($refine, "\"isbn\"")){
+	$sql = "SELECT * FROM book WHERE isbn LIKE '%$search%'";
+	$result = mysqli_query($conn, $sql);
+		$_SESSION['search_results'] = array();
+
+		if (mysqli_num_rows($result) > 0) {
+
+			while ($row = mysqli_fetch_assoc($result)) {
+
+				$_SESSION['search_results'][] = $row;
+				
+			}
+		}
+}
 ///////////////////////////////////////////////////////////////////////////////////
 //IF THERE IS NO CATEGORY SELECTED AND SEARCH ANYWHERE IS SELECTED, LIST ALL BOOKS IN DB
 if ($refine == "\"anywhere\"" && $category == 'all'){
