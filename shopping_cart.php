@@ -47,6 +47,16 @@ include_once 'includes/dbh.inc.php';
 		print_r($_SESSION['cart']);
 	}
 
+	//updates the quantity of each book in the cart in the database
+	function updateQuantity($value){
+
+	}
+ 
+	//updates the values in teh quantity boxes and updates the 
+	function recalculate(){
+		updateQuantity('$new_quantity');
+	}
+
 ?>
 
 <!DOCTYPE HTML>
@@ -170,14 +180,13 @@ include_once 'includes/dbh.inc.php';
 							while ($row = mysqli_fetch_assoc($result)) {
 
 								echo '<tr><td><button name=\'delete\' id=\'delete\' onClick=\'del("' . $row['isbn'] . '")\';return false;>Delete Item</button></td>';
-								echo '<td>' .  $row['title'] . '</br><b>By </b>' . $row['author'] . '</br><b>Publisher: </b>' . $row['publisher'] . '</td><td><input id=\'quantity\' name=\'quantity\' value =' . $count  . ' size=\'1\' /></td><td>$' . $count*$row['price'] . '</td></tr>';
+								echo '<td>' .  $row['title'] . '</br><b>By </b>' . $row['author'] . '</br><b>Publisher: </b>' . $row['publisher'] . '</td><td><input id=\'quantity\' name=\'quantity\' value =' . $count  . ' size=\'1\')/></td><td>$' . $count*$row['price'] . '</td></tr>';
 								$subtotal += $count * $row['price'];
 							}
 
 						}
 						
 						?>
-						
 					</table>
 				</div>
 
@@ -189,7 +198,7 @@ include_once 'includes/dbh.inc.php';
 
 			<td align="center">				
 
-					<input type="submit" name="recalculate_payment" id="recalculate_payment" value="Recalculate Payment">
+					<input type="submit" name="recalculate_payment" id="recalculate_payment" value="Recalculate Payment" onClick = "recalculate()">
 
 				</form>
 
