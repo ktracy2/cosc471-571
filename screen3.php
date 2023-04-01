@@ -2,9 +2,7 @@
 <!-- Figure 3: Search Result Screen by Prithviraj Narahari, php coding: Alexander Martens -->
 
 
-
 <?php
-
 
 
 session_start();
@@ -14,34 +12,11 @@ session_start();
 include_once 'includes/dbh.inc.php';
 
 
-
-
-
-// Check connection
-
-/*
-
-if ($conn->connect_error) {
-
-echo "MySQL connection failed.";
-
-} else {
-
-echo "MySQL connection success!";
-
-}
-
-*/
-
 // Saves the state of the search results page to go back to after looking at review
 
 $queryString = $_SERVER['QUERY_STRING'];
 
 $_SESSION['queryString'] = $queryString;
-
-
-
-
 
 
 
@@ -86,8 +61,8 @@ $_SESSION['cartSize'] = $cartSize;
   if($cartSize > 5)
 
   unset($_SESSION['cart']);
- */
-
+ 
+*/
 
 
 

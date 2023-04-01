@@ -11,61 +11,39 @@ include_once 'includes/dbh.inc.php';
 
 	$user = $_SESSION["user"];
 
-	echo $user;
-
 	//until user logs in/creates an account, cart_id is for the default temporary user
 
 	$_SESSION["cart_id"] = "temp_user";
 
 	$_SESSION["cart_contents"] = $temp_cart;
-/* 
-						//get unique isbn
 
-						$_SESSION['cart_query'] = array_unique($_SESSION['cart']);
+	//Calculate the subtotal
+	//Loops through the cart array and adds the price of each book to the subtotal variable
+	$subtotal = 0;
+	foreach ($_SESSION['cart'] as $isbn) {
+		$query = "SELECT price FROM book WHERE isbn = '$isbn'";
 
-						foreach($_SESSION['cart_query'] as $id){
-
-							$query = "SELECT * FROM book WHERE isbn = '$id'";
-
-							$result = mysqli_query($conn, $query);
-
-
-							// Display book information
-
-							while ($row = mysqli_fetch_assoc($result)) {
-
-								echo '<tr><td><button name=\'delete\' id=\'delete\' onClick=\'del("123441")\';return false;>Delete Item</button></td>';
-						echo '<td>' .  $row['title'] . '</br><b>By </b>' . $row['author'] . '</br><b>Publisher: </b>' . $row['publisher'] . '</td><td><input id=\'txt123441\' name=\'txt123441\' value=\'1\' size=\'1\' /></td><td>' . $row['price'] . '</td></tr>';
-
-								echo "Title: " . $row['title'] . "<br>";
-
-								echo "Author: " . $row['author'] . "<br>";
-
-								echo "ISBN: " . $row['isbn'] . "<br>";
-
-								echo "Price: $" . $row['price'] . "<br><br>";
-
-							}
-
-					 } */
-
-
+		$result = mysqli_query($conn, $query);
+		while ($row = mysqli_fetch_assoc($result)) {
+		$subtotal += $row['price'];
+		}
+		
+	}
 
 
 	
-
-
-
-
-
-
-
-
-
-
-
+	//Deleting from the cart
+	print_r($_SESSION['cart']);
+	$isbnDel = $_GET['delIsbn'];
+	//$_SESSION['cart'] = array_diff($isbnDel, [$cart]);
 	
+	/* foreach (array_keys($_SESSION['cart'], $isbnDel, true) as $key) {
+    	unset($array[$key]);
+	} */
+	echo '<br>';
+	print_r($_SESSION['cart']);
 
+	$_SESSION['cart'] = array_diff($_SESSION['cart'],$isbnDel);
 ?>
 
 <!DOCTYPE HTML>
@@ -171,8 +149,8 @@ include_once 'includes/dbh.inc.php';
 
 							while ($row = mysqli_fetch_assoc($result)) {
 
-								echo '<tr><td><button name=\'delete\' id=\'delete\' onClick=\'del("123441")\';return false;>Delete Item</button></td>';
-								echo '<td>' .  $row['title'] . '</br><b>By </b>' . $row['author'] . '</br><b>Publisher: </b>' . $row['publisher'] . '</td><td><input id=\'txt123441\' name=\'txt123441\' value=\'1\' size=\'1\' /></td><td>' . $row['price'] . '</td></tr>';
+								echo '<tr><td><button name=\'delete\' id=\'delete\' onclick=\"del('. $id .')\" return false;>Delete Item</button></td>';
+								echo '<td>' .  $row['title'] . '</br><b>By </b>' . $row['author'] . '</br><b>Publisher: </b>' . $row['publisher'] . '</td><td><input id=\'quantity\' name=\'quantity\' value ='. $_POST['quantity'] . ' size=\'1\' /></td><td>' . $row['price'] . '</td></tr>';
 
 							}
 
@@ -203,7 +181,7 @@ include_once 'includes/dbh.inc.php';
 
 			</td>
 
-			<td align="center">Subtotal:  $12.99</td>
+			<td align="center">Subtotal:  $<?php echo $subtotal?></td>
 
 		</tr>
 
