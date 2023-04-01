@@ -169,7 +169,7 @@ include_once 'includes/dbh.inc.php';
 
 							while ($row = mysqli_fetch_assoc($result)) {
 
-								echo '<tr><td><button name=\'delete\' id=\'delete\' onClick=\'del("' . $row['isbn'] . '")\' >Delete Item</button></td>';
+								echo '<tr><td><button name=\'delete\' id=\'delete\' onClick=\'del("' . $row['isbn'] . '")\';return false;>Delete Item</button></td>';
 								echo '<td>' .  $row['title'] . '</br><b>By </b>' . $row['author'] . '</br><b>Publisher: </b>' . $row['publisher'] . '</td><td><input id=\'quantity\' name=\'quantity\' value =' . $count  . ' size=\'1\' /></td><td>$' . $count*$row['price'] . '</td></tr>';
 								$subtotal += $count * $row['price'];
 							}
