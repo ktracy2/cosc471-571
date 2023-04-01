@@ -4,9 +4,9 @@ include_once 'includes/dbh.inc.php';
 
 
 	// Start a session 
-
+	
 	session_start();
-
+	
 	//$_SESSION["user"] = "default";
 
 	$user = $_SESSION["user"];
@@ -20,30 +20,33 @@ include_once 'includes/dbh.inc.php';
 	//Calculate the subtotal
 	//Loops through the cart array and adds the price of each book to the subtotal variable
 	$subtotal = 0;
-	foreach ($_SESSION['cart'] as $isbn) {
-		$query = "SELECT price FROM book WHERE isbn = '$isbn'";
+	// foreach ($_SESSION['cart'] as $isbn) {
+	// 	$query = "SELECT price FROM book WHERE isbn = '$isbn'";
 
-		$result = mysqli_query($conn, $query);
-		while ($row = mysqli_fetch_assoc($result)) {
-		$subtotal += $row['price'];
-		}
+	// 	$result = mysqli_query($conn, $query);
+	// 	while ($row = mysqli_fetch_assoc($result)) {
+	// 	$subtotal += $row['price'];
+	// 	}
 		
-	}
+	// }
 
-
-	
 	//Deleting from the cart
-	print_r($_SESSION['cart']);
-	$isbnDel = $_GET['delIsbn'];
-	//$_SESSION['cart'] = array_diff($isbnDel, [$cart]);
 	
-	/* foreach (array_keys($_SESSION['cart'], $isbnDel, true) as $key) {
+	print_r($_SESSION['cart']);
+	if(isset($_GET['delIsbn'])){
+		$isbnDel = $_GET['delIsbn'];
+		//$_SESSION['cart'] = array_diff($isbnDel, [$cart]);
+	
+		/* foreach (array_keys($_SESSION['cart'], $isbnDel, true) as $key) {
     	unset($array[$key]);
 	} */
-	echo '<br>';
-	print_r($_SESSION['cart']);
+		
 
-	$_SESSION['cart'] = array_diff($_SESSION['cart'],$isbnDel);
+		$_SESSION['cart'] = array_diff($_SESSION['cart'],$isbnDel);
+		echo '<br>';
+		print_r($_SESSION['cart']);
+	}
+
 ?>
 
 <!DOCTYPE HTML>
@@ -59,9 +62,8 @@ include_once 'includes/dbh.inc.php';
 	//remove from cart
 
 	function del(isbn){
-
+		console.log(isbn);
 		window.location.href="shopping_cart.php?delIsbn="+ isbn;
-
 	}
 
 	</script>
@@ -142,16 +144,34 @@ include_once 'includes/dbh.inc.php';
 
 							$query = "SELECT * FROM book WHERE isbn = '$id'";
 
+
+
 							$result = mysqli_query($conn, $query);
+
+
+
+
+
+							$count = 0;
+
+							foreach ($_SESSION['cart'] as $value) {
+
+								if ($value == $id) {
+
+									$count++;
+
+								}
+
+							}
 
 
 							// Display book information
 
 							while ($row = mysqli_fetch_assoc($result)) {
 
-								echo '<tr><td><button name=\'delete\' id=\'delete\' onclick=\"del('. $id .')\" return false;>Delete Item</button></td>';
-								echo '<td>' .  $row['title'] . '</br><b>By </b>' . $row['author'] . '</br><b>Publisher: </b>' . $row['publisher'] . '</td><td><input id=\'quantity\' name=\'quantity\' value ='. $_POST['quantity'] . ' size=\'1\' /></td><td>' . $row['price'] . '</td></tr>';
-
+								echo '<tr><td><button name=\'delete\' id=\'delete\' onClick=\'del("' . $row['isbn'] . '")\' >Delete Item</button></td>';
+								echo '<td>' .  $row['title'] . '</br><b>By </b>' . $row['author'] . '</br><b>Publisher: </b>' . $row['publisher'] . '</td><td><input id=\'quantity\' name=\'quantity\' value =' . $count  . ' size=\'1\' /></td><td>$' . $count*$row['price'] . '</td></tr>';
+								$subtotal += $count * $row['price'];
 							}
 
 						}

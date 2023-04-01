@@ -1,5 +1,6 @@
 
-<!-- Figure 3: Search Result Screen by Prithviraj Narahari, php coding: Alexander Martens -->
+<!-- Figure 3: Search Result Screen by Prithviraj Narahari, php coding: Alexander Martens 
+Edited by Katie Tracy and Dinalu He-->
 
 
 <?php
@@ -63,13 +64,6 @@ $_SESSION['cartSize'] = $cartSize;
   unset($_SESSION['cart']);
  
 */
-
-
-
-
-
-
-
 
 
 
@@ -290,42 +284,6 @@ else if ($category != 'all') {
 
 
 
-// // Add item to cart --- i think this part should be in shopping_cart
-
-
-
-// if (isset($_GET['cartisbn'])) {
-
-
-
-//     $cart_item = array(
-
-
-
-//         'isbn' => $_GET['cartisbn'],
-
-
-
-//         'title' => $_GET['carttitle'],
-
-
-
-//         'price' => $_GET['cartprice']
-
-
-
-//     );
-
-
-
-//     $_SESSION['cart'][] = $cart_item;
-
-
-
-// }
-
-
-
 // Close database connection
 
 
@@ -333,13 +291,7 @@ else if ($category != 'all') {
 mysqli_close($conn);
 
 
-
 ?>
-
-
-
-<!-- Figure 3: Search Result Screen by Prithviraj Narahari, php coding: Alexander Martens -->
-
 
 
 <html>
