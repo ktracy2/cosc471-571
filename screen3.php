@@ -67,36 +67,20 @@ if(isset($_GET['cartisbn'])) {
 
 }
 
-
-
-// testing purpose 
-
-//echo $_SESSION['cart'];
-
-/* foreach($_SESSION['cart'] as $kk) {
-
-	echo "  ";
-
-  echo $kk;
-
-} */
-
+foreach ($_SESSION['cart'] as $isbn) {
+	echo $isbn . ', ';
+}
 
 
 // this count the click of add to cart button (not associate to a given book!!)
 
-//$cartSize = count($_SESSION['cart']);
+$cartSize = count($_SESSION['cart']);
+echo $cartSize;
+$_SESSION['cartSize'] = $cartSize;
 
 
 
-/* //testing purpose
-
-	echo "\n";
-
-  echo $cartSize;
-
-
-
+/*
 //testing purpose --- reset the cart
 
   if($cartSize > 5)
@@ -454,25 +438,7 @@ mysqli_close($conn);
 			<td align="left">
 
 
-
-					<?php 
-
-					// Get a count of all items in shopping cart and set equal to below 
-
-					$numItems = 1;
-
-					
-
-					?>
-
-
-
-					<h6> <fieldset>Your Shopping Cart has <?php echo $numItems?> items</fieldset> </h6>
-
-
-
-				
-
+					<h6> <fieldset>Your Shopping Cart has <?php echo $cartSize?> items</fieldset> </h6>
 
 
 			</td>
