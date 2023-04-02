@@ -5,7 +5,7 @@ Edited by Katie Tracy and Dinalu He-->
 
 <?php
 
-
+$cartSize = 0;
 session_start();
 
 
@@ -41,18 +41,16 @@ if(isset($_GET['cartisbn'])) {
 
 	array_push($_SESSION['cart'], $cartisbn);
 
+	$cartSize = count($_SESSION['cart']);
+	echo $cartSize;
+	$_SESSION['cartSize'] = $cartSize;
 }
 
-foreach ($_SESSION['cart'] as $isbn) {
-	echo $isbn . ', ';
-}
 
 
 // this count the click of add to cart button (not associate to a given book!!)
 
-$cartSize = count($_SESSION['cart']);
-echo $cartSize;
-$_SESSION['cartSize'] = $cartSize;
+
 
 
 

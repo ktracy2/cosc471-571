@@ -1,18 +1,17 @@
 <!-- Figure 1: Welcome Screen by Alexander -->
 <!-- External CSS Added By Katie Tracy -->
+<!-- Edited by Katie Tracy-->
 <html>
 <link rel="stylesheet" href="styles.css">
 <?php
-//ini_set('display_errors', 1);
-//ini_set('display_startup_errors', 1);
-//error_reporting(E_ALL);
+
 include_once 'includes/dbh.inc.php';
-// Check connection
-/* if ($conn->connect_error) {
-echo "MySQL connection failed.";
-} else {
-echo "MySQL connection success!";
-} */
+//Reset session on home page
+session_start();
+if(isset($_SESSION['cart'])){
+	$_SESSION = [];
+}
+
 ?>
 <title>Welcome to Best Book Buy Online Bookstore!</title>
 

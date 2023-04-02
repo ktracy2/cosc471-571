@@ -6,16 +6,25 @@ include_once 'includes/dbh.inc.php';
 	// Start a session 
 	
 	session_start();
+
+	
 	
 	//$_SESSION["user"] = "default";
-
-	$user = $_SESSION["user"];
+	if(isset($_SESSION["user"])){
+		$user = $_SESSION["user"];
+	}
+	
 
 	//until user logs in/creates an account, cart_id is for the default temporary user
+	if(isset($_SESSION["cart_id"])){
+		$_SESSION["cart_id"] = "temp_user";
+	}
+	if(isset($_SESSION["cart_contents"])){
+		$_SESSION["cart_contents"] = $temp_cart;
+	}
+	
 
-	$_SESSION["cart_id"] = "temp_user";
-
-	$_SESSION["cart_contents"] = $temp_cart;
+	
 
 	//Calculate the subtotal
 	//Loops through the cart array and adds the price of each book to the subtotal variable
@@ -31,31 +40,21 @@ include_once 'includes/dbh.inc.php';
 	// }
 
 	//Deleting from the cart
-	
-	print_r($_SESSION['cart']);
 	if(isset($_GET['delIsbn'])){
-		$isbnDel = $_GET['delIsbn'];
-		//$_SESSION['cart'] = array_diff($isbnDel, [$cart]);
-	
-		/* foreach (array_keys($_SESSION['cart'], $isbnDel, true) as $key) {
-    	unset($array[$key]);
-	} */
 		
+		$isbnDel = $_GET['delIsbn'];
 
-		$_SESSION['cart'] = array_diff($_SESSION['cart'],$isbnDel);
-		echo '<br>';
-		print_r($_SESSION['cart']);
-	}
+		//array with the elements to be delete 
+		$array_del = array($isbnDel);
 
-	//updates the quantity of each book in the cart in the database
-	function updateQuantity($value){
-
+		//creating a new array without the ISBN
+		$temp = array_values(array_diff($_SESSION['cart'],$array_del));
+		
+		$_SESSION['cart'] = $temp;
+		
 	}
  
-	//updates the values in teh quantity boxes and updates the 
-	function recalculate(){
-		updateQuantity('$new_quantity');
-	}
+	
 
 ?>
 
@@ -72,8 +71,17 @@ include_once 'includes/dbh.inc.php';
 	//remove from cart
 
 	function del(isbn){
-		console.log(isbn);
 		window.location.href="shopping_cart.php?delIsbn="+ isbn;
+	}
+
+	//updates the values in the quantity boxes and updates the 
+	function recalculate(){
+		var input = document.getElementById('quantity').value;
+		console.log(input);
+	}
+	//updates the quantity of each book in the cart in the database
+	function updateQuantity($value){
+
 	}
 
 	</script>
@@ -81,7 +89,7 @@ include_once 'includes/dbh.inc.php';
 </head>
 
 <body>
-
+	
 	<h1 align = "center">Shopping Cart</h1>
 
 	<table align="center" style="border:2px solid blue;">
@@ -91,8 +99,13 @@ include_once 'includes/dbh.inc.php';
 		<!-- Show user name on cart, if user is not logged in, username is "default" -->
 
 		<?php
-
-		print "<tr><td>User: $user</td><td></td><td></td></tr>";
+		//hi
+		if(isset($_SESSION["user"])){
+			echo "<tr><td>User: $user</td><td></td><td></td></tr>";
+		}
+		else{
+			echo "<tr><td>User: unregistered user</td><td></td><td></td></tr>";
+		}
 
 		?>
 
@@ -154,13 +167,7 @@ include_once 'includes/dbh.inc.php';
 
 							$query = "SELECT * FROM book WHERE isbn = '$id'";
 
-
-
 							$result = mysqli_query($conn, $query);
-
-
-
-
 
 							$count = 0;
 
@@ -179,8 +186,8 @@ include_once 'includes/dbh.inc.php';
 
 							while ($row = mysqli_fetch_assoc($result)) {
 
-								echo '<tr><td><button name=\'delete\' id=\'delete\' onClick=\'del("' . $row['isbn'] . '")\';return false;>Delete Item</button></td>';
-								echo '<td>' .  $row['title'] . '</br><b>By </b>' . $row['author'] . '</br><b>Publisher: </b>' . $row['publisher'] . '</td><td><input id=\'quantity\' name=\'quantity\' value =' . $count  . ' size=\'1\')/></td><td>$' . $count*$row['price'] . '</td></tr>';
+								echo '<tr><td><button name=\'delete\' id=\'delete\' onClick=\'del("' . $row['isbn'] . '");return false;\'>Delete Item</button></td>';
+								echo '<td>' .  $row['title'] . '</br><b>By </b>' . $row['author'] . '</br><b>Publisher: </b>' . $row['publisher'] . '</td><td><input id=\'quantity\' name=\'quantity\' onblur = \'updateQuantity()\' value =' . $count  . ' size=\'1\')/></td><td>$' . $count*$row['price'] . '</td></tr>';
 								$subtotal += $count * $row['price'];
 							}
 
