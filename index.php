@@ -7,10 +7,8 @@
 
 include_once 'includes/dbh.inc.php';
 //Reset session on home page
-session_start();
-if(isset($_SESSION['cart'])){
-	$_SESSION = [];
-}
+
+
 
 ?>
 <title>Welcome to Best Book Buy Online Bookstore!</title>

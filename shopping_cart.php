@@ -53,7 +53,22 @@ include_once 'includes/dbh.inc.php';
 		$_SESSION['cart'] = $temp;
 		
 	}
- 
+    if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+        $_SESSION['cart_query'] = array_unique($_SESSION['cart']);
+        $updated_cart = array();
+        //print_r($_SESSION['cart_query']);
+        foreach ($_SESSION['cart_query'] as $id){
+             //echo $id;
+        //print_r($_POST);
+            if (array_key_exists($id, $_POST)) {
+                $num = (int)$_POST[$id];
+                for ($i = 0; $i < $num; $i++) {
+					array_push($updated_cart, $id);
+				}
+            }
+        }
+        $_SESSION['cart'] = $updated_cart;
+    }
 	
 
 ?>
@@ -187,7 +202,7 @@ include_once 'includes/dbh.inc.php';
 							while ($row = mysqli_fetch_assoc($result)) {
 
 								echo '<tr><td><button name=\'delete\' id=\'delete\' onClick=\'del("' . $row['isbn'] . '");return false;\'>Delete Item</button></td>';
-								echo '<td>' .  $row['title'] . '</br><b>By </b>' . $row['author'] . '</br><b>Publisher: </b>' . $row['publisher'] . '</td><td><input id=\'quantity\' name=\'quantity\' onblur = \'updateQuantity()\' value =' . $count  . ' size=\'1\')/></td><td>$' . $count*$row['price'] . '</td></tr>';
+								echo '<td>' .  $row['title'] . '</br><b>By </b>' . $row['author'] . '</br><b>Publisher: </b>' . $row['publisher'] . '</td><td><input id='. $row['isbn'] . ' name= '. $row['isbn'] . ' value =' . $count  . ' size=\'1\')/></td><td>$' . $count*$row['price'] . '</td></tr>';
 								$subtotal += $count * $row['price'];
 							}
 

@@ -42,28 +42,9 @@ if(isset($_GET['cartisbn'])) {
 	array_push($_SESSION['cart'], $cartisbn);
 
 	$cartSize = count($_SESSION['cart']);
-	echo $cartSize;
+	
 	$_SESSION['cartSize'] = $cartSize;
 }
-
-
-
-// this count the click of add to cart button (not associate to a given book!!)
-
-
-
-
-
-/*
-//testing purpose --- reset the cart
-
-  if($cartSize > 5)
-
-  unset($_SESSION['cart']);
- 
-*/
-
-
 
 
 $search = $_GET['searchfor']; //what was in the search text box
@@ -315,9 +296,7 @@ mysqli_close($conn);
 	function review(isbn, title){
 
 
-
 		window.location.href="screen4.php?isbn="+ isbn + "&title=" + title;
-
 
 
 	}
@@ -386,7 +365,7 @@ mysqli_close($conn);
 
 
 
-				<form action="shopping_cart.php" method="post">
+				<form action="shopping_cart.php" method="get">
 
 
 
