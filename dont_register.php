@@ -1,4 +1,4 @@
-<!-- Edited by Katie Tracy -->
+<!-- By Katie Tracy -->
 <?php
 include_once 'includes/dbh.inc.php';
 // Check connection
@@ -8,7 +8,7 @@ include_once 'includes/dbh.inc.php';
 	//echo "MySQL connection success!";
 	} */
 ?>
-
+<!DOCTYPE HTML>
 <head>
 <link rel="stylesheet" href="styles.css">
 <title> WARNING:  YOU MUST REGISTER TO COMPLETE TRANSACTION </title>
@@ -26,3 +26,7 @@ include_once 'includes/dbh.inc.php';
         </tr>
         
         </table>
+        </body>
+
+</html>
+  

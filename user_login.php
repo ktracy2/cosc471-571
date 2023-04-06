@@ -1,3 +1,4 @@
+<!-- Edited by Katie Tracy -->
 <?php
 include_once 'includes/dbh.inc.php';
 // Check connection
@@ -6,7 +7,9 @@ echo "MySQL connection failed.";
 } else {
 echo "MySQL connection success!";
 } */
+
 ?>
+
 <!DOCTYPE HTML>
 <head>
 <title>User Login</title>
@@ -15,7 +18,9 @@ echo "MySQL connection success!";
 <body>
 <h1 align="center">User Login</h1>
 	<table align="center" style="border:2px solid blue;">
-		<form action="screen2.php" method="post" id="login_screen">
+		<!--<form action="screen2.php" method="post" id="login_screen">-->
+		<!-- FORM ACTION goes to check_login.php now, which validates data entered -->
+		<form action="check_login.php" method="post" id="login_screen">
 		<tr>
 			<td align="right">
 				Username<span style="color:red">*</span>:
