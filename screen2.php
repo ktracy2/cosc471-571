@@ -5,7 +5,7 @@
 include_once 'includes/dbh.inc.php';
 session_start();
 if ($_SESSION['user_logged_in'] != null) {
-	echo $_SESSION['user_logged_in'];
+	//echo $_SESSION['user_logged_in'];
 }
 
 
