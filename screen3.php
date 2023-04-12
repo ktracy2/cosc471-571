@@ -4,10 +4,11 @@ Edited by Katie Tracy and Dinalu He-->
 
 
 <?php
+if(!isset($_SESSION['cart'])){
+	$cartSize = 0;
+}
 
-$cartSize = 0;
 session_start();
-
 
 
 include_once 'includes/dbh.inc.php';
@@ -45,6 +46,7 @@ if(isset($_GET['cartisbn'])) {
 	
 	$_SESSION['cartSize'] = $cartSize;
 }
+
 
 
 $search = $_GET['searchfor']; //what was in the search text box

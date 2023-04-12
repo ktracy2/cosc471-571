@@ -6,8 +6,15 @@ include_once 'includes/dbh.inc.php';
 // } else {
 // echo "MySQL connection success!";
 // }
+session_start();
+if ($_SESSION['user_logged_in'] != null) {
+	$username = $_SESSION['user_logged_in'];
+	
+	$db = mysqli_connect("localhost", "admin", "password", "3bdb");
+}
 ?>
-<script>alert('Please enter all values')</script><!DOCTYPE HTML>
+<script>alert('Please enter all values')</script>
+<!DOCTYPE HTML>
 <head>
 <title>UPDATE CUSTOMER PROFILE</title>
 <link rel="stylesheet" href="styles.css">
@@ -17,7 +24,7 @@ include_once 'includes/dbh.inc.php';
 	<table align="center" style="border:2px solid blue;">
 		<tr>
 			<td align="right">
-				Username: 
+				Username: <?php echo $username ?>
 			</td>
 			<td colspan="3" align="center">
 							</td>
@@ -123,5 +130,44 @@ include_once 'includes/dbh.inc.php';
 		</tr>
 	</table>
 	</form>
+
+	<?php
+
+	if (!empty($_POST)) {
+		//Get variables from user input
+		$newPIN = (int)$_POST["new_pin"];
+		$retype_pin = (int)$_POST["retypenew_pin"];
+		$fname = $_POST["firstname"];
+		$lname = $_POST["lastname"];
+		$address = $_POST["address"];
+		$city = $_POST["city"];
+		$state = $_POST["state"];
+		$zip = (int)$_POST["zip"];
+		$cctype = $_POST["credit_card"];
+		$ccnum = $_POST["card_number"];
+		$expdate = $_POST["expiration_date"];
+
+		if ($newPIN == $retype_pin){
+			$query = "UPDATE customer 
+				SET pin = '$newPIN', 
+				fname = '$fname', 
+				lname = '$lname',
+				address = '$address', 
+				city = '$city', 
+				state = '$state', 
+				zip = '$zip', 
+				cctype = '$cctype', 
+				ccnum = '$ccnum', 
+				expdate = '$expdate'
+				WHERE username = '$username';";
+			mysqli_query($db, $query);
+		}
+
+		header("Location: http://142.93.240.246/successful_update.php");
+		exit();
+		
+	}
+	
+	?>
 </body>
 </html>
