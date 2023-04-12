@@ -19,7 +19,7 @@ include_once 'includes/dbh.inc.php';
         <table align = "center">
         <tr><th><td></td><td><h3>In order to proceed with the payment, you need to register first.</h3></td><td></td></th></tr>
         <tr><td colspan="2" align="center"></td><td colspan="2" align="center">
-            <form id="no_registration" action="index.php" method="post">
+            <form id="no_registration" action="screen2.php" method="post">
             <input type="submit" id="no" name="no" value="Okay" >
             </form>
         </td><td></td>

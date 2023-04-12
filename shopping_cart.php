@@ -1,4 +1,5 @@
 <?php
+//TODO If there is a user logged in, "Checkout" button needs to route to confirm order page.  Otherwise, it needs to route to customer registration. 
 
 include_once 'includes/dbh.inc.php';
 
@@ -12,6 +13,7 @@ include_once 'includes/dbh.inc.php';
 	//$_SESSION["user"] = "default";
 	if(isset($_SESSION["user"])){
 		$user = $_SESSION["user"];
+	echo $user;
 	}
 	
 
@@ -127,7 +129,8 @@ include_once 'includes/dbh.inc.php';
 
 			<td align="center">
 
-				<form id="checkout" action="confirm_order.php" method="get">
+				<!--<form id="checkout" action="confirm_order.php" method="get">-->
+				<form id="checkout" action="customer_registration.php" method="get">
 
 					<input type="submit" name="checkout_submit" id="checkout_submit" value="Proceed to Checkout">
 
