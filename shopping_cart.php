@@ -94,10 +94,7 @@ include_once 'includes/dbh.inc.php';
 		var input = document.getElementById('quantity').value;
 		console.log(input);
 	}
-	//updates the quantity of each book in the cart in the database
-	function updateQuantity($value){
-
-	}
+	
 
 	</script>
 
@@ -114,9 +111,9 @@ include_once 'includes/dbh.inc.php';
 		<!-- Show user name on cart, if user is not logged in, username is "default" -->
 
 		<?php
-		//hi
-		if(isset($_SESSION["user"])){
-			echo "<tr><td>User: $user</td><td></td><td></td></tr>";
+		if ($_SESSION['user_logged_in'] != null) {
+			$user = $_SESSION['user_logged_in'];
+			echo "<tr><td><b>User: </b>$user</td><td></td><td></td></tr>";
 		}
 		else{
 			echo "<tr><td>User: unregistered user</td><td></td><td></td></tr>";

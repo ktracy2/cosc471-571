@@ -10,9 +10,9 @@ include_once 'includes/dbh.inc.php';
     
     $db = mysqli_connect("localhost", "admin", "password", "3bdb");
     $username = $_POST['username'];
-    print $username;
+    //print $username;
     $pin = (int)$_POST['pin'];
-    print $pin;
+    //print $pin;
     //check if username exists in db
     $query = "SELECT * FROM customer where username = '$username';";
     $result = mysqli_query($db, $query);

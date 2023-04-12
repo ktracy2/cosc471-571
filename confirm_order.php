@@ -8,6 +8,7 @@ echo "MySQL connection success!";
 } */
 	session_start();
 
+	
 	if ($_SESSION['user_logged_in'] != null) {
 		$username = $_SESSION['user_logged_in'];
 		$db = mysqli_connect("localhost", "admin", "password", "3bdb");
@@ -28,6 +29,10 @@ echo "MySQL connection success!";
 			$expdate = $row['expdate'];
 		}
 	}
+	else{
+		header("Location: http://142.93.240.246/dont_register.php");
+		exit();
+	}
 
 
 
@@ -36,7 +41,7 @@ echo "MySQL connection success!";
 <head>
 	<title>CONFIRM ORDER</title>
 	<link rel="stylesheet" href="styles.css">
-	<header align="center">Confirm Order</header> 
+	<header align="center"><h1>Confirm Order</h1></header> 
 </head>
 <body>
 	<table align="center" style="border:2px solid blue;">
@@ -59,6 +64,7 @@ echo "MySQL connection success!";
 				</select>
 				<input type="text" id="card_number" name="card_number" placeholder="Credit card number">
 				<br />Exp date<input type="text" id="card_expiration" name="card_expiration" placeholder="mm/yyyy">
+				
 	</td>
 	<tr>
 	<td colspan="2">
@@ -75,9 +81,58 @@ echo "MySQL connection success!";
 	<tr>
 	<td colspan="3" align="center">
 	<div id="bookdetails" style="overflow:scroll;height:180px;width:520px;border:1px solid black;">
-	<table border='1'>
+	<table border='1' width = '100%'>
 		<th>Book Description</th><th>Qty</th><th>Price</th>
-		<tr><td>iuhdf</br><b>By</b> Avi Silberschatz</br><b>Publisher:</b> McGraw-Hill</td><td>1</td><td>$12.99</td></tr>	</table>
+		<?php
+		//until user logs in/creates an account, cart_id is for the default temporary user
+		if(isset($_SESSION["cart_id"])){
+			$_SESSION["cart_id"] = "temp_user";
+		}
+		if(isset($_SESSION["cart_contents"])){
+			$_SESSION["cart_contents"] = $temp_cart;
+		}
+		if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+			$_SESSION['cart_query'] = array_unique($_SESSION['cart']);
+			$updated_cart = array();
+			//print_r($_SESSION['cart_query']);
+			foreach ($_SESSION['cart_query'] as $id){
+				
+				if (array_key_exists($id, $_POST)) {
+					$num = (int)$_POST[$id];
+					for ($i = 0; $i < $num; $i++) {
+						array_push($updated_cart, $id);
+					}
+				}
+			}
+			$_SESSION['cart'] = $updated_cart;
+		}
+		$_SESSION['cart_query'] = array_unique($_SESSION['cart']);
+
+			foreach ($_SESSION['cart_query'] as $id) {
+
+				$query = "SELECT * FROM book WHERE isbn = '$id'";
+
+				$result = mysqli_query($conn, $query);
+
+				$count = 0;
+
+				foreach ($_SESSION['cart'] as $value) {
+
+					if ($value == $id) {
+
+						$count++;
+
+					}
+
+				}
+				while ($row = mysqli_fetch_assoc($result)) {
+					echo '<tr><td width="66%">' .  $row['title'] . '</br><b>By </b>' . $row['author'] . '</br><b>Publisher: </b>' . $row['publisher'] . '</td><td align="center">' . $count . '</td><td align="center">$' . $count*$row['price'] . '</td></tr>';
+					$subtotal += $count * $row['price'];
+				}
+			}
+			
+		?>
+		</table>
 	</div>
 	</td>
 	</tr>
@@ -89,7 +144,7 @@ echo "MySQL connection success!";
 	</td>
 	<td align="right">
 	<div id="bookdetails" style="overflow:scroll;height:180px;width:260px;border:1px solid black;">
-		SubTotal:$12.99</br>Shipping & Handling: $2</br>_______</br>Total:$14.99	</div>
+		SubTotal: $<?php echo $subtotal ?></br>Shipping & Handling: $2</br>_______</br>Total:$<?php echo $subtotal + 2?>	</div>
 	</td>
 	</tr>
 	<tr>
