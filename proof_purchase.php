@@ -105,7 +105,7 @@ include_once 'includes/dbh.inc.php';
 				}
 			}
 	
-			session_destroy();
+			//session_destroy();
 		?>
 
 	</table>

@@ -36,18 +36,27 @@ include_once 'includes/dbh.inc.php';
 			echo '<h3 style = "color:red;" align = "center">User already exists.  Choose a new username.</h3>';
 		}
 		else {
+		
 			//if username does not exist, build the sql statement to save the information and forcibly redirect to the search page
-			if ($pin == $retype_pin){
-				$query = "INSERT INTO customer(username, pin, fname, lname, address, city, zip, state, cctype ,ccnum, expdate) VALUES ('$username', $pin, '$firstname', '$lastname', '$address', '$city', $zip, '$state', '$cctype', '$ccnum', '$expdate');";
-        		mysqli_query($db, $query);
-				
+		if ($pin == $retype_pin) {
+			$query = "INSERT INTO customer(username, pin, fname, lname, address, city, zip, state, cctype ,ccnum, expdate) VALUES ('$username', $pin, '$firstname', '$lastname', '$address', '$city', $zip, '$state', '$cctype', '$ccnum', '$expdate');";
+			mysqli_query($db, $query);
+
 			//redirect to checkout page (see if shopping cart is populated) 
-				if (!isset($_SESSION['cart'])) {
-					//reroute to confirm order page
-					$has_cart = true;
-				}
-				
+			if (isset($_SESSION['cart'])) {
+				//reroute to confirm order page
+				$has_cart = true;
 			}
+
+			if ($has_cart) {
+				header("Location: http://142.93.240.246/confirm_order.php");
+			} else {
+				header("Location: http://142.93.240.246/screen2.php");
+			}
+
+		}
+				
+			
 		}
 	
 	}
@@ -66,16 +75,9 @@ include_once 'includes/dbh.inc.php';
 <h1 align="center">CUSTOMER REGISTRATION</h1>
 	<table align="center" style="border:2px solid blue;">
 		<tr>
-			<?php
-			if ($has_cart) {
-				echo '<form id="register" action="confirm_order.php" method="post">';
-			}
-			else {
-				echo '<form id="register" action="screen2.php" method="post">';
-			}
-			
-			?>
-			
+	 
+			<form id="register" action="" method="post">';
+
 			<td align="right">
 				Username<span style="color:red">*</span>:
 			</td>
