@@ -1,14 +1,24 @@
 
+
 <!-- Figure 3: Search Result Screen by Prithviraj Narahari, php coding: Alexander Martens 
 Edited by Katie Tracy and Dinalu He-->
 
+<!-- fix screen 3,  display correct number in shopping cart when go back to search page again.
+--------------- line 17 & 356 -->
+
 
 <?php
-if(!isset($_SESSION['cart'])){
-	$cartSize = 0;
-}
 
 session_start();
+
+
+//$
+if(!isset($_SESSION['cart'])){
+	//$cartSize = 0;
+	$_SESSION['cartSize'] = 0;
+}
+
+//session_start();
 
 
 include_once 'includes/dbh.inc.php';
@@ -344,7 +354,9 @@ mysqli_close($conn);
 			<td align="left">
 
 
-					<h6> <fieldset>Your Shopping Cart has <?php echo $cartSize?> items</fieldset> </h6>
+					<!-- <h6> <fieldset>Your Shopping Cart has <?php echo $cartSize?> items</fieldset> </h6> -->
+					<h6> <fieldset>Your Shopping Cart has <?php echo $_SESSION['cartSize']?> items</fieldset> </h6>
+
 
 
 			</td>
@@ -486,9 +498,15 @@ mysqli_close($conn);
 			<td align= "center">
 
 
-
-				<form action="confirm_order.php" method="get">
-
+					<?php
+						if($_SESSION['user_logged_in'] == null){
+							echo '<form action="customer_registration.php" method="get">';
+						}
+						else {
+							echo '<form action="confirm_order.php" method="get">';
+						}
+						
+					?>
 
 
 					<input type="submit" value="Proceed To Checkout" id="checkout" name="checkout">

@@ -20,6 +20,7 @@ CREATE TABLE customer (
 INSERT INTO customer VALUES ('ktracy',1234,'Katie', 'Tracy', '8590 Barrington', 'Ypsilanti', 48198, 'Michigan', 'VISA', '1234567890123456', '12/23');
 INSERT INTO customer VALUES ('rkalvaitis',5678,'Rick', 'Kalvaitis', '8590 Barrington','8590 Barrington', 'Ypsilanti', 48198, 'Michigan', 'MASTER', '2463517284938345', '04/25');
 INSERT INTO customer VALUES ('breekibird',1111,'Breeki', 'Tracy', '123 Bird St.', 'Ypsilanti', 48198, 'Michigan', 'DISCOVER', '1111111111111111', '11/11');
+INSERT INTO customer VALUES ('darbino',2222,'Darby', 'Tracy', '123 Bird St.', 'Ypsilanti', 48198, 'Michigan', 'DISCOVER', '2222222222222222', '12/22');
 
 // book DDL and DML by Katie
 // book table DDL
@@ -72,3 +73,14 @@ INSERT INTO book VALUES ('0547928223', 'The Hobbit','JRR Tolkein', 'Houghton Mif
     books_ordered varchar(500),
     timeOfOrder  varchar(15), 
     primary key (order_id));
+
+//admin table
+CREATE TABLE admin( 
+adminName varchar(10), 
+pin int, 
+fname varchar(20), 
+lname varchar(20), 
+PRIMARY KEY (adminName) 
+); 
+
+INSERT INTO admin VALUES ('admin',123,'Katie','Tracy');

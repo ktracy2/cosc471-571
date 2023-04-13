@@ -8,6 +8,7 @@ include_once 'includes/dbh.inc.php';
 	//echo "MySQL connection success!";
 	} */
 
+	$has_cart = false;
 	if (!empty($_POST)){
 		//Set connection to a variable
 		$db = mysqli_connect("localhost", "admin", "password", "3bdb");
@@ -30,23 +31,31 @@ include_once 'includes/dbh.inc.php';
 		$query = "SELECT * FROM customer where username = '$username';";
 		$result = mysqli_query($db, $query);
 		$num_rows = mysqli_num_rows($result);
+		//if username exists in db, alert that username exists
 		if ($num_rows > 0) {
-			echo 'User already exists.  Choose a new username.';
+			echo '<h3 style = "color:red;" align = "center">User already exists.  Choose a new username.</h3>';
 		}
 		else {
+			//if username does not exist, build the sql statement to save the information and forcibly redirect to the search page
 			if ($pin == $retype_pin){
 				$query = "INSERT INTO customer(username, pin, fname, lname, address, city, zip, state, cctype ,ccnum, expdate) VALUES ('$username', $pin, '$firstname', '$lastname', '$address', '$city', $zip, '$state', '$cctype', '$ccnum', '$expdate');";
         		mysqli_query($db, $query);
+				
+			//redirect to checkout page (see if shopping cart is populated) 
+				if (!isset($_SESSION['cart'])) {
+					//reroute to confirm order page
+					$has_cart = true;
+				}
+				
 			}
 		}
 	
 	}
 	//came from index.php or redirected from a checkout 
 
-	//is username exists in db, alert that username exists
+
 	
-	//if username does not exist, build the sql statement to save the information and forcibly redirect to the search page
-	//TO DOredirect to checkout page (see if shopping cart is populated) 
+	
 ?>
 <script>alert('Please enter all values')</script><!-- UI: Prithviraj Narahari, php code: Alexander Martens -->
 <head>
@@ -57,7 +66,16 @@ include_once 'includes/dbh.inc.php';
 <h1 align="center">CUSTOMER REGISTRATION</h1>
 	<table align="center" style="border:2px solid blue;">
 		<tr>
-			<form id="register" action="" method="post">
+			<?php
+			if ($has_cart) {
+				echo '<form id="register" action="confirm_order.php" method="post">';
+			}
+			else {
+				echo '<form id="register" action="screen2.php" method="post">';
+			}
+			
+			?>
+			
 			<td align="right">
 				Username<span style="color:red">*</span>:
 			</td>

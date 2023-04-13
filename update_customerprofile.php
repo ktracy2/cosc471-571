@@ -19,12 +19,13 @@ if ($_SESSION['user_logged_in'] != null) {
 <title>UPDATE CUSTOMER PROFILE</title>
 <link rel="stylesheet" href="styles.css">
 </head>
+<h1 align="center">Update Customer Profile</h1>
 <body>
 	<form id="update_profile" action="" method="post">
 	<table align="center" style="border:2px solid blue;">
 		<tr>
 			<td align="right">
-				Username: <?php echo $username ?>
+				<b>Username:</b> <?php echo $username ?>
 			</td>
 			<td colspan="3" align="center">
 							</td>
@@ -160,11 +161,13 @@ if ($_SESSION['user_logged_in'] != null) {
 				ccnum = '$ccnum', 
 				expdate = '$expdate'
 				WHERE username = '$username';";
-			mysqli_query($db, $query);
+				mysqli_query($db, $query);
+
+				header("Location: http://142.93.240.246/successful_update.php");
+				exit();
 		}
 
-		header("Location: http://142.93.240.246/successful_update.php");
-		exit();
+		
 		
 	}
 	

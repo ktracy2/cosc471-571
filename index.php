@@ -1,12 +1,40 @@
 <!-- Figure 1: Welcome Screen by Alexander -->
 <!-- External CSS Added By Katie Tracy -->
 <!-- Edited by Katie Tracy-->
+<!-- Added reset session on home page for unregistered users ----Line 26 - 34  -->
+
 <html>
 <link rel="stylesheet" href="styles.css">
 <?php
 
 include_once 'includes/dbh.inc.php';
 //Reset session on home page
+
+
+
+ // Start the session
+
+if (isset($_POST['exit'])) {
+  // User clicked the "EXIT 3-B.com" button, so end the session
+  //unset($_SESSION['user_logged_in']);
+  session_destroy();
+  header('Location: index.php'); // Redirect to the home page
+  exit;
+}
+
+
+// if (isset($_POST['exit'])) {
+// 	// User clicked the "EXIT 3-B.com" button, so end the session
+// 	if(!isset($_SESSION['user_logged_in'])){
+// 		session_destroy();
+// 		header('Location: index.php'); // Redirect to the home page
+// 		exit;
+// 	}
+	
+//   }
+
+
+
 
 
 
