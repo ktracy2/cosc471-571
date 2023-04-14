@@ -1,12 +1,7 @@
 <!-- Edited by Katie Tracy -->
 <?php
 include_once 'includes/dbh.inc.php';
-// Check connection
-/* 	if ($conn->connect_error) {
-	//echo "MySQL connection failed.";
-	} else {
-	//echo "MySQL connection success!";
-	} */
+
 
 	$has_cart = false;
 	if (!empty($_POST)){
@@ -33,14 +28,18 @@ include_once 'includes/dbh.inc.php';
 		$num_rows = mysqli_num_rows($result);
 		//if username exists in db, alert that username exists
 		if ($num_rows > 0) {
-			echo '<h3 style = "color:red;" align = "center">User already exists.  Choose a new username.</h3>';
+			echo "<script>alert('User already exists.  Choose a new username.')</script>";
 		}
 		else {
 		
-			//if username does not exist, build the sql statement to save the information and forcibly redirect to the search page
+		//if username does not exist, build the sql statement to save the information and forcibly redirect to the search page
 		if ($pin == $retype_pin) {
-			$query = "INSERT INTO customer(username, pin, fname, lname, address, city, zip, state, cctype ,ccnum, expdate) VALUES ('$username', $pin, '$firstname', '$lastname', '$address', '$city', $zip, '$state', '$cctype', '$ccnum', '$expdate');";
+			$query = "INSERT INTO customer(
+				username, pin, fname, lname, address, city, zip, state, cctype ,ccnum, expdate) 
+				VALUES ('$username', $pin, '$firstname', '$lastname', '$address', '$city', $zip, 
+				'$state', '$cctype', '$ccnum', '$expdate');";
 			mysqli_query($db, $query);
+			session_start();
 
 			//redirect to checkout page (see if shopping cart is populated) 
 			if (isset($_SESSION['cart'])) {
@@ -49,11 +48,18 @@ include_once 'includes/dbh.inc.php';
 			}
 
 			if ($has_cart) {
+				/////////////////////////////////////////
+				$_SESSION['user_logged_in'] = $username;
 				header("Location: http://142.93.240.246/confirm_order.php");
 			} else {
+				////////////////////////////////////////
+				$_SESSION['user_logged_in'] = $username;
 				header("Location: http://142.93.240.246/screen2.php");
 			}
 
+		}
+		if ($pin != $retype_pin){
+			echo "<script>alert('Pins do not match.')</script>";
 		}
 				
 			
