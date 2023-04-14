@@ -14,24 +14,26 @@ include_once 'includes/dbh.inc.php';
 
  // Start the session
 
-if (isset($_POST['exit'])) {
+ if (isset($_POST['exit'])){
   // User clicked the "EXIT 3-B.com" button, so end the session
   //unset($_SESSION['user_logged_in']);
   session_destroy();
-  header('Location: index.php'); // Redirect to the home page
-  exit;
-}
+  header('Location: http://142.93.240.246/index.php'); // Redirect to the home page
+  exit();
+}  
 
 
-// if (isset($_POST['exit'])) {
-// 	// User clicked the "EXIT 3-B.com" button, so end the session
-// 	if(!isset($_SESSION['user_logged_in'])){
-// 		session_destroy();
-// 		header('Location: index.php'); // Redirect to the home page
-// 		exit;
-// 	}
+/* if (isset($_POST['exit'])) {
+	// User clicked the "EXIT 3-B.com" button, so end the session
+	if(isset($_SESSION['user_logged_in'])){
+		//session_destroy();
+		//unset($_SESSION);
+
+		header('Location: http://142.93.240.246/index.php'); // Redirect to the home page
+		exit;
+	}
 	
-//   }
+  } */
 
 
 
