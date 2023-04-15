@@ -1,7 +1,8 @@
 <!-- Figure 1: Welcome Screen by Alexander -->
 <!-- External CSS Added By Katie Tracy -->
 <!-- Edited by Katie Tracy-->
-<!-- Added reset session on home page for unregistered users ----Line 26 - 34  -->
+<!-- Added reset session on home page for unregistered users ----Line 15 - 23  -->
+<!-- Apr 14th, Line 17 added session_start(); -->
 
 <html>
 <link rel="stylesheet" href="styles.css">
@@ -13,6 +14,7 @@ include_once 'includes/dbh.inc.php';
 
 
  // Start the session
+ session_start();
 
  if (isset($_POST['exit'])){
   // User clicked the "EXIT 3-B.com" button, so end the session
@@ -34,9 +36,6 @@ include_once 'includes/dbh.inc.php';
 	}
 	
   } */
-
-
-
 
 
 

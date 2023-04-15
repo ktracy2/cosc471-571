@@ -1,3 +1,9 @@
+<!-- modified line 149 & 156 ~182   // tried to put line 156 ~ 182 in to top php section, inclulding checking buy it action.
+So the total amount is calculated from current order. Otherwise, it stores the total from previous value. Currently, it write to order in db 
+witout clicking buy it. -->
+
+
+
 <?php
 include_once 'includes/dbh.inc.php';
 // Check connection
@@ -33,6 +39,10 @@ echo "MySQL connection success!";
 		header("Location: http://142.93.240.246/dont_register.php");
 		exit();
 	}
+
+
+	
+
 
 
 
@@ -125,11 +135,59 @@ echo "MySQL connection success!";
 					}
 
 				}
+
+				
+				
+
 				while ($row = mysqli_fetch_assoc($result)) {
 					echo '<tr><td width="66%">' .  $row['title'] . '</br><b>By </b>' . $row['author'] . '</br><b>Publisher: </b>' . $row['publisher'] . '</td><td align="center">' . $count . '</td><td align="center">$' . $count*$row['price'] . '</td></tr>';
 					$subtotal += $count * $row['price'];
+
+					
 				}
+
+				//$$
+
+				//session_start();
+				$_SESSION['total'] = $subtotal + 2;
+				
 			}
+			
+
+
+			//$$ if buyit botton is clicked
+	//if(isset($_POST['submit'])) {
+		// Prepare the query to insert the order into the orders table
+		$db = mysqli_connect("localhost", "admin", "password", "3bdb");
+		$order_id = 1;
+		$username = $_SESSION['user_logged_in'];
+		$total = $_SESSION['total'];
+		
+		$books_ordered = implode(',', $_SESSION['cart']);
+
+		date_default_timezone_set('America/New_York');
+		$time_of_order = date('F d y h:i:s');
+		$month = date('n');
+		$year = date('Y');
+		$day = date('m-d-y');
+		$time = date('h:i:s');
+		$_SESSION["day"] = $day;
+		$_SESSION["time"] = $time;
+
+		$result = mysqli_query($db, $query);
+		$num_rows = mysqli_num_rows($result);
+
+		if($num_rows < 1) {
+			$sql = "INSERT INTO orders ($order_id, customer_username, total, books_ordered, timeOfOrder, month, year) VALUES ($order_id, '$username', '$total', '$books_ordered', '$time_of_order', '$month', '$year')";
+			mysqli_query($conn, $sql);
+		}
+		else {
+			$sql = "INSERT INTO orders (customer_username, total, books_ordered, timeOfOrder, month, year) VALUES ('$username', '$total', '$books_ordered', '$time_of_order', '$month', '$year')";
+			mysqli_query($conn, $sql);
+		}
+
+
+	//}
 			
 		?>
 		</table>
@@ -144,13 +202,18 @@ echo "MySQL connection success!";
 	</td>
 	<td align="right">
 	<div id="bookdetails" style="overflow:scroll;height:180px;width:260px;border:1px solid black;">
-		SubTotal: $<?php echo $subtotal ?></br>Shipping & Handling: $2</br>_______</br>Total:$<?php echo $subtotal + 2?>	</div>
+		<!-- SubTotal: $<?php echo $subtotal ?></br>Shipping & Handling: $2</br>_______</br>Total:$<?php echo $subtotal + 2?>	</div> -->
+		<!-- //$ -->
+		SubTotal: $<?php echo $subtotal ?></br>Shipping & Handling: $2</br>_______</br>Total:$<?php echo $_SESSION['total']?>	</div>
+
 	</td>
 	</tr>
 	<tr>
 		<td align="right">
 			<input type="submit" id="buyit" name="btnbuyit" value="BUY IT!">
+			
 		</td>
+
 		</form>
 		<td align="right">
 			<form id="update" action="update_customerprofile.php" method="post">
@@ -166,4 +229,3 @@ echo "MySQL connection success!";
 	</table>
 </body>
 </HTML>
-

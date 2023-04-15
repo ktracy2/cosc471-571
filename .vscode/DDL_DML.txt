@@ -70,9 +70,17 @@ INSERT INTO book VALUES ('0547928223', 'The Hobbit','JRR Tolkein', 'Houghton Mif
     (order_id int NOT NULL AUTO_INCREMENT, 
     customer_username varchar(10), 
     total decimal(5,2),
-    books_ordered varchar(500),
-    timeOfOrder  varchar(15), 
+    books_ordered varchar(1000),
+    timeOfOrder  varchar(50), 
+    month varchar(20),
+    year char(4),
     primary key (order_id));
+    
+insert into orders values(1, 'rkalvaitis', 25.57, '0147514010,0441013597', 'March 10 23 05:25:45', 'March', '2023');
+insert into orders values(2, 'ktracy', 7.99, '0547928223', 'April 1 23 05:25:45', 'April', '2023');
+insert into orders values(3, 'dhe', 17.76, '0441013597', 'March 1 23 05:25:45', 'March', '2023');
+insert into orders values(4, 'breeki', 7.99, '0547928223', 'April 1 23 05:25:45', 'April', '2023');
+insert into orders values(5, 'dhe', 17.76, '0147514010,0147514010', 'February 1 23 04:12:45', 'February', '2023');
 
 //admin table
 CREATE TABLE admin( 
@@ -84,3 +92,9 @@ PRIMARY KEY (adminName)
 ); 
 
 INSERT INTO admin VALUES ('admin',123,'Katie','Tracy');
+
+
+SELECT category COUNT(book.title) AS "Total"
+FROM book 
+GROUP BY Category
+ORDER BY Total DESC;

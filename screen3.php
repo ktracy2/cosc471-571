@@ -8,7 +8,6 @@ Edited by Katie Tracy and Dinalu He-->
 
 
 <?php
-
 session_start();
 
 

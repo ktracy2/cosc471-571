@@ -36,7 +36,8 @@ include_once 'includes/dbh.inc.php';
 				$ccnum = $row['ccnum'];
 				$expdate = $row['expdate'];
 			}
-			
+		$day = $_SESSION["day"];
+		$time = $_SESSION["time"];
 		}
 	?>
 
@@ -59,8 +60,8 @@ include_once 'includes/dbh.inc.php';
 		<?php echo $fname . " " . $lname ?>	</td>
 	<td rowspan="3" colspan="2">
 		<b>UserID: </b><?php echo $username ?><br />
-		<b>Date: </b><?php $username ?><br />
-		<b>Time: </b><?php $username ?><br />
+		<b>Date: </b><?php echo $day; ?><br />
+		<b>Time: </b><?php echo $time ?><br />
 		<b>Card Info: </b><?php echo $cctype ?><br /><?php echo $expdate . " " . $ccnum ?>	</td>
 	<tr>
 	<td colspan="2">

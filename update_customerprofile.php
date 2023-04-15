@@ -6,7 +6,11 @@ include_once 'includes/dbh.inc.php';
 // } else {
 // echo "MySQL connection success!";
 // }
-	session_start();
+
+session_start();
+// check clicking submit button
+if (isset($_POST['submit'])) {
+
 	if ($_SESSION['user_logged_in'] != null) {
 		$username = $_SESSION['user_logged_in'];
 		
@@ -50,6 +54,10 @@ include_once 'includes/dbh.inc.php';
 		
 		
 	}
+
+		
+	}
+
 	
 ?>
 <script>alert('Please enter all values')</script>
@@ -163,7 +171,9 @@ include_once 'includes/dbh.inc.php';
 				<input type="submit" id="update_submit" name="update_submit" value="Update">
 			</td>
 			</form>
-		<form id="cancel" action="index.php" method="post">	
+		<!-- <form id="cancel" action="index.php" method="post">	 -->
+		<form id="cancel" action="confirm_order.php" method="post">	
+
 			<td align="left" colspan="2">
 				<input type="submit" id="cancel_submit" name="cancel_submit" value="Cancel">
 			</td>
