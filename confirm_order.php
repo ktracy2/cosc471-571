@@ -167,7 +167,7 @@ echo "MySQL connection success!";
 
 		date_default_timezone_set('America/New_York');
 		$time_of_order = date('F d y h:i:s');
-		$month = date('n');
+		$month = (int) date('n');
 		$year = date('Y');
 		$day = date('m-d-y');
 		$time = date('h:i:s');
