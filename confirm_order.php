@@ -156,7 +156,7 @@ echo "MySQL connection success!";
 
 
 			//$$ if buyit botton is clicked
-	//if(isset($_POST['submit'])) {
+	if(isset($_POST['submit'])) {
 		// Prepare the query to insert the order into the orders table
 		$db = mysqli_connect("localhost", "admin", "password", "3bdb");
 		$order_id = 1;
@@ -187,7 +187,7 @@ echo "MySQL connection success!";
 		}
 
 
-	//}
+	}
 			
 		?>
 		</table>
