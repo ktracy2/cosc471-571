@@ -49,7 +49,7 @@ include_once 'includes/dbh.inc.php';
                 $query = "SELECT category, COUNT(title) AS \"total\" FROM book  GROUP BY Category ORDER BY total DESC;";
                 $result = mysqli_query($db, $query);
                 $num_rows = mysqli_num_rows($result);
-                for ($i; $i < $num_rows; $i++){
+                for ($i = 0; $i < $num_rows; $i++){
                     $row = mysqli_fetch_assoc($result);
                     $category = $row["category"];
                     $total = $row["total"];
@@ -81,21 +81,26 @@ include_once 'includes/dbh.inc.php';
                 $query = "SELECT month, round(avg(total),2) AS \"avg\" FROM orders WHERE year = '$year' GROUP BY month ORDER BY month;";
                 $result = mysqli_query($db, $query);
                 $num_rows = mysqli_num_rows($result);
-                echo $num_rows;
-                for ($i; $i < $num_rows; $i++){
+               
+                for ($i = 0; $i < $num_rows; $i++){
             
                     $row = mysqli_fetch_assoc($result);
+            
                     $month = (int)$row["month"];
             
-                    $total = (float)$row["avg"];
+                    $avg = $row["avg"];
            
                     echo '<tr style = "border:1px solid blue;">
-                        <td style = "border:1px solid blue;">' . $month . '</td><td style = "border:1px solid blue; text-align:right;  width:33%;">$' . $total . '</td></tr>';
+                        <td style = "border:1px solid blue;">' . $month . '</td><td style = "border:1px solid blue; text-align:right;  width:33%;">$' . $avg . '</td></tr>';
                 }   
         ?>
         
 </table>
 
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 <h2 style="margin-top:30px;">Reviews Per Book</h2>
@@ -111,11 +116,11 @@ include_once 'includes/dbh.inc.php';
                 $query = "SELECT bookTitle, COUNT(review) AS \"reviews\" FROM reviews GROUP BY bookTitle;";
                 $result = mysqli_query($db, $query);
                 $num_rows = mysqli_num_rows($result);
-            echo $num_rows;
-                for ($i; $i < $num_rows; $i++){
+            
+                for ($i = 0; $i < $num_rows; $i++){
                     $row = mysqli_fetch_assoc($result);
                     $title = $row["bookTitle"];
-                    echo $title;
+                    //echo $title;
                     
                     $total = $row["reviews"];
                     //echo $total;
@@ -125,6 +130,10 @@ include_once 'includes/dbh.inc.php';
             ?>
 </table>
 		
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
